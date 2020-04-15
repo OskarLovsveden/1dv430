@@ -3,8 +3,17 @@ import ReactDOM from 'react-dom'
 import './index.css'
 // import * as serviceWorker from './serviceWorker'
 
+// Import Components
+import SearchBar from './components/SearchBar'
+
 const Test = () => {
-	return <>Test</>
+	const logSubmit = submittedInput => {
+		console.log('Logging submitted input: ', submittedInput)
+	}
+
+	return (
+		<SearchBar submit={logSubmit} placeholder="Search for game..."></SearchBar>
+	)
 }
 
 ReactDOM.render(<Test></Test>, document.getElementById('root'))
