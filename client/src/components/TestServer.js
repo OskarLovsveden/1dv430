@@ -5,7 +5,7 @@ const TestServer = () => {
 	const [testData, setTestData] = useState('')
 	const [loading, setLoading] = useState()
 	const [error, setError] = useState(null)
-	const [url] = useState('http://localhost:8000/')
+	const [url] = useState('/test')
 
 	const fetchTestData = async () => {
 		setLoading(true)
