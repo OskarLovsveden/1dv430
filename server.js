@@ -1,8 +1,9 @@
-const path = require('path')
+// Config
+const config = require('./config/config')
+const { PORT, API_URL, API_KEY } = config
 
-// Dotenv
-const dotenv = require('dotenv')
-dotenv.config()
+// Node
+const path = require('path')
 
 // Axios
 const axios = require('axios')
@@ -11,17 +12,8 @@ const axios = require('axios')
 const express = require('express')
 const app = express()
 
-// app.use((req, res, next) => {
-// 	res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
-// 	res.header(
-// 		'Access-Control-Allow-Headers',
-// 		'Origin, X-Requested-With, Content-Type, Accept'
-// 	)
-// 	next()
-// })
-
 const IGDB = async () => {
-	const response = await axios(process.env.API_URL)
+	const response = await axios(API_URL)
 	return response.data
 }
 
@@ -40,7 +32,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Start listening
-const port = process.env.PORT || 8000
+const port = PORT || 8000
 app.listen(port, () => {
 	console.log(`Server is running on port: ${port}`)
 })
