@@ -1,10 +1,10 @@
 import React from 'react'
 
 // Components
-import TestServer from './TestServer'
+import TestIGDB from './TestIGDB'
 
 export const Demo = () => {
-	return <TestServer />
+	return <TestIGDB />
 }
 
 export default Demo

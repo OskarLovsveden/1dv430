@@ -12,13 +12,13 @@ const axios = require('axios')
 const express = require('express')
 const app = express()
 
-const IGDB = async () => {
+const pingIGDB = async () => {
 	const response = await axios(API_URL)
 	return response.data
 }
 
-app.get('/test', async (req, res) => {
-	const test = await IGDB()
+app.get('/testIGDB', async (req, res) => {
+	const test = await pingIGDB()
 	res.json(test)
 })
 
