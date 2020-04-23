@@ -1,5 +1,5 @@
 // Config
-const config = require('./config/config')
+const config = require('./config/dotenv')
 const { PORT, API_URL, API_KEY } = config
 
 // Node
