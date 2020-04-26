@@ -5,7 +5,7 @@ const TestIGDB = () => {
 	const [testData, setTestData] = useState('')
 	const [loading, setLoading] = useState()
 	const [error, setError] = useState(null)
-	const [url] = useState('/testIGDB')
+	const [url] = useState('/igdb/test')
 
 	const fetchTestData = async () => {
 		setLoading(true)
