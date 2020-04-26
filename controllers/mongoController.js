@@ -3,9 +3,7 @@ const mongoController = {}
 
 mongoController.testGet = async (req, res) => {
 	try {
-		const viewData = {
-			tests: await Test.find()
-		}
+		const viewData = await Test.find()
 		res.json(viewData)
 	} catch (error) {
 		console.error(error.message)
@@ -14,12 +12,19 @@ mongoController.testGet = async (req, res) => {
 
 mongoController.testPost = async (req, res) => {
 	try {
-		console.log('controller testPost()')
 		const test = new Test({
 			text: 'test'
 		})
 		await test.save()
-		res.send('Test data created successfully!')
+		res.json(test)
+	} catch (error) {
+		console.error(error.message)
+	}
+}
+
+mongoController.testRemoveAll = async (req, res) => {
+	try {
+		await Test.deleteMany({})
 	} catch (error) {
 		console.error(error.message)
 	}
