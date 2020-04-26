@@ -1,75 +1,49 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+
+const activeLink = { backgroundColor: 'rgba(255, 255, 255, 0.2)' }
 
 const Nav = () => {
 	return (
-		<nav class="navbar navbar-expand-lg navbar-dark primary-color">
-			<a class="navbar-brand" href="#">
+		<nav className="navbar navbar-expand-lg navbar-dark primary-color">
+			<NavLink className="navbar-brand" to="/">
 				Navbar
-			</a>
+			</NavLink>
 
 			<button
-				class="navbar-toggler"
+				className="navbar-toggler"
 				type="button"
 				data-toggle="collapse"
-				data-target="#basicExampleNav"
-				aria-controls="basicExampleNav"
+				data-target="#app-navbar"
+				aria-controls="app-navbar"
 				aria-expanded="false"
 				aria-label="Toggle navigation"
 			>
-				<span class="navbar-toggler-icon"></span>
+				<span className="navbar-toggler-icon"></span>
 			</button>
 
-			<div class="collapse navbar-collapse" id="basicExampleNav">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="#">
+			<div className="collapse navbar-collapse" id="app-navbar">
+				<ul className="navbar-nav mr-auto">
+					<li className="nav-item">
+						<NavLink exact activeStyle={activeLink} className="nav-link" to="/">
 							Home
-							<span class="sr-only">(current)</span>
-						</a>
+						</NavLink>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">
-							Features
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">
-							Pricing
-						</a>
-					</li>
-
-					<li class="nav-item dropdown">
-						<a
-							class="nav-link dropdown-toggle"
-							id="navbarDropdownMenuLink"
-							data-toggle="dropdown"
-							aria-haspopup="true"
-							aria-expanded="false"
+					<li className="nav-item">
+						<NavLink
+							activeStyle={activeLink}
+							className="nav-link"
+							to="/testigdb"
 						>
-							Dropdown
-						</a>
-						<div
-							class="dropdown-menu dropdown-primary"
-							aria-labelledby="navbarDropdownMenuLink"
-						>
-							<a class="dropdown-item" href="#">
-								Action
-							</a>
-							<a class="dropdown-item" href="#">
-								Another action
-							</a>
-							<a class="dropdown-item" href="#">
-								Something else here
-							</a>
-						</div>
+							TestIGDB
+						</NavLink>
 					</li>
 				</ul>
 
-				<form class="form-inline">
-					<div class="md-form my-0">
+				<form className="form-inline">
+					<div className="md-form my-0">
 						<input
-							class="form-control mr-sm-2"
+							className="form-control mr-sm-2"
 							type="text"
 							placeholder="Search"
 							aria-label="Search"
