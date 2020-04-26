@@ -16,5 +16,5 @@ const testSchema = new mongoose.Schema(
 // Create a model using the schema.
 const Test = mongoose.model('Test', testSchema)
 
-// Exports.
+// Exports
 module.exports = Test
