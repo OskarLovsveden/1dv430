@@ -38,6 +38,15 @@ const Nav = () => {
 							TestIGDB
 						</NavLink>
 					</li>
+					<li className="nav-item">
+						<NavLink
+							activeStyle={activeLink}
+							className="nav-link"
+							to="/testmongo"
+						>
+							TestMongoDB
+						</NavLink>
+					</li>
 				</ul>
 
 				<form className="form-inline">
