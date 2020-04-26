@@ -1,13 +1,10 @@
 // Config
 const config = require('./config/dotenv')
 const mongoose = require('./config/mongoose')
-const { PORT, API_URL, API_KEY } = config
+const { PORT } = config
 
 // Node
 const path = require('path')
-
-// Axios
-const axios = require('axios')
 
 // Express
 const express = require('express')
@@ -19,30 +16,9 @@ mongoose.connect().catch(error => {
 	process.exit(1)
 })
 
-// Test IGDB connection
-const pingIGDB = async () => {
-	const response = await axios(API_URL)
-	return response.data
-}
-
-// Route for testing IGDB connection
-app.get('/testIGDB', async (req, res) => {
-	const test = await pingIGDB()
-	res.json(test)
-})
-
-const Test = require('./models/Test')
-
-// Route for testing MongoDB connection
-app.get('/testMongoDB', async (req, res) => {
-	console.log('test mongoDB')
-	const test = new Test({
-		text: 'test'
-	})
-
-	await test.save()
-	res.json('test')
-})
+// routes
+app.use('/igdb', require('./routes/igdbRouter'))
+app.use('/mongo', require('./routes/mongoRouter'))
 
 // Serve static assets if in production.
 if (process.env.NODE_ENV === 'production') {
