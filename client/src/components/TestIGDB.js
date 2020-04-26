@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState /*useEffect*/ } from 'react'
 import axios from 'axios'
 
 const TestIGDB = () => {
@@ -7,7 +7,7 @@ const TestIGDB = () => {
 	const [error, setError] = useState(null)
 	const [url] = useState('/igdb/test')
 
-	const fetchTestData = async () => {
+	const getTestData = async () => {
 		setLoading(true)
 		try {
 			const response = await axios.get(url)
@@ -21,7 +21,7 @@ const TestIGDB = () => {
 	}
 
 	// useEffect(() => {
-	// 	fetchTestData()
+	// 	getTestData()
 	// }, [url])
 
 	// if (loading) {
@@ -33,32 +33,28 @@ const TestIGDB = () => {
 	// }
 
 	return (
-		<div className="card w-50 m-2">
-			<div className="card-header">
-				<button onClick={fetchTestData} className="btn btn-lg secondary-color">
-					{url}
-				</button>
-				<span>
-					{loading ? (
-						<span>
-							<span className="spinner-border" role="status">
-								<span className="sr-only">Loading...</span>
-							</span>
+		<div className="text-center">
+			<button onClick={getTestData} className="btn btn-lg secondary-color">
+				{url}
+			</button>
+			<span>
+				{loading ? (
+					<span>
+						<span className="spinner-border" role="status">
+							<span className="sr-only">Loading...</span>
 						</span>
-					) : (
-						<span>Press button to ping IGDB!</span>
-					)}
-				</span>
-			</div>
-			<div className="card-body">
-				<p className="card-text">
-					{error ? (
-						<span>Data: {error} | Not a valid url...</span>
-					) : (
-						<span>Data: {testData}</span>
-					)}
-				</p>
-			</div>
+					</span>
+				) : (
+					<span>Press button to ping IGDB!</span>
+				)}
+			</span>
+			<p>
+				{error ? (
+					<span>Data: {error} | Not a valid url...</span>
+				) : (
+					<span>Data: {testData}</span>
+				)}
+			</p>
 		</div>
 	)
 }
