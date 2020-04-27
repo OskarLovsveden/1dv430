@@ -1,6 +1,6 @@
 // Config
-const config = require('./config/dotenv')
 const mongoose = require('./config/mongoose')
+const config = require('./config/dotenv')
 const { PORT } = config
 
 // Node
@@ -17,6 +17,7 @@ mongoose.connect().catch(error => {
 })
 
 // routes
+app.get('/', (req, res) => res.sendStatus(200))
 app.use('/igdb', require('./routes/igdbRouter'))
 app.use('/mongo', require('./routes/mongoRouter'))
 
