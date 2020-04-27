@@ -13,7 +13,7 @@ mongoController.testGet = async (req, res) => {
 mongoController.testPost = async (req, res) => {
 	try {
 		const test = new Test({
-			text: 'test'
+			testdata: 'testing'
 		})
 		await test.save()
 		res.json(test)
