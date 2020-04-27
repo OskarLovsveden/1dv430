@@ -50,7 +50,7 @@ const TestMongoDB = () => {
 			{testData ? (
 				<ul>
 					{testData.map(test => (
-						<li key={test._id}>{test._id}</li>
+						<li key={test._id}>{test.testdata}</li>
 					))}
 				</ul>
 			) : (
