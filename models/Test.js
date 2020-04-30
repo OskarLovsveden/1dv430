@@ -3,9 +3,7 @@ const mongoose = require('mongoose')
 // Create a schema.
 const testSchema = new mongoose.Schema(
 	{
-		test: {
-			text: String
-		}
+		testdata: String
 	},
 	{
 		timestamps: true,
