@@ -1,24 +1,27 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 // Components
 import SearchBar from '../components/SearchBar'
 
 const Home = () => {
-	const [query, setQuery] = useState(null)
+	const [searchData, setSearchData] = useState(null)
 
-	const submitToQuery = searchInput => {
-		console.log('submitToQuery', searchInput)
-		setQuery(searchInput)
+	const receiveData = data => {
+		console.log(data)
+		setSearchData(data)
 	}
 
 	return (
 		<div>
-			<SearchBar placeholder="Search for a game..."></SearchBar>
-			{/* <SearchBar
-				submit={submitToQuery}
+			<SearchBar
+				passUp={receiveData}
 				placeholder="Search for a game..."
-			></SearchBar> */}
-			<h1>{query}</h1>
+			></SearchBar>
+			<ul>
+				{searchData
+					? searchData.map(game => <li key={game.id}>{game.name}</li>)
+					: null}
+			</ul>
 		</div>
 	)
 }
