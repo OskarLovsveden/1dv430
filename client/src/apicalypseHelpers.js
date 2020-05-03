@@ -22,6 +22,7 @@ apicalypseHelpers.getGames = async userInput => {
 		.search(userInput)
 		.request('/games')
 
+	console.log(process.env)
 	return response.data
 }
 
