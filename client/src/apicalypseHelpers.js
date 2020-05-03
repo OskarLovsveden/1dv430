@@ -9,8 +9,7 @@ const apicalypseHelpers = {}
 apicalypseHelpers.getGames = async userInput => {
 	const requestOptions = {
 		queryMethod: 'body',
-		method: 'post', // The default is `get`
-		// baseURL: process.env.REACT_APP_IGDB_URL,
+		method: 'post',
 		headers: {
 			Accept: 'application/json',
 			'user-key': process.env.REACT_APP_IGDB_KEY
@@ -19,7 +18,7 @@ apicalypseHelpers.getGames = async userInput => {
 	}
 
 	const response = await apicalypse(requestOptions)
-		.fields('name')
+		.fields('name,genres')
 		.search(userInput)
 		.request('/games')
 
