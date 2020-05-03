@@ -4,16 +4,13 @@ import PropTypes from 'prop-types'
 // Apicalypse
 import apicalypseHelpers from '../apicalypseHelpers'
 
-const SearchBar = ({ submit, placeholder }) => {
+const SearchBar = ({ passUp, placeholder }) => {
 	const [input, setInput] = useState(null)
 
 	const onSubmitForm = async event => {
 		event.preventDefault()
 		const data = await apicalypseHelpers.getGames(input)
-		console.log(data)
-		// console.log(event.target)
-		// console.log('Submitting Input: ', input)
-		// submit(input)
+		passUp(data)
 	}
 
 	const onWriteInput = event => {
@@ -41,7 +38,7 @@ const SearchBar = ({ submit, placeholder }) => {
 
 // Proptypes
 SearchBar.propTypes = {
-	submit: PropTypes.func,
+	passUp: PropTypes.func,
 	placeholder: PropTypes.string
 }
 
