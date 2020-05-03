@@ -17,7 +17,7 @@ mongoose.connect().catch(error => {
 })
 
 // routes
-app.get('/', (req, res) => res.sendStatus(200))
+app.get('/test-env', (req, res) => res.json(process.env.TEST))
 app.use('/igdb', require('./routes/igdbRouter'))
 app.use('/mongo', require('./routes/mongoRouter'))
 
