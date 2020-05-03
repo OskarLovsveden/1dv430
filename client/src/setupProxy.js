@@ -8,4 +8,27 @@ module.exports = function (app) {
 			changeOrigin: true
 		})
 	)
+
+	app.use(
+		'/mongo',
+		createProxyMiddleware({
+			target: 'http://localhost:8000',
+			changeOrigin: true
+		})
+	)
+
+	app.use(
+		'/igdb',
+		createProxyMiddleware({
+			target: 'http://localhost:8000',
+			changeOrigin: true
+		})
+	)
+	app.use(
+		'/test-env',
+		createProxyMiddleware({
+			target: 'http://localhost:8000',
+			changeOrigin: true
+		})
+	)
 }
