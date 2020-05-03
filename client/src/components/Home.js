@@ -7,7 +7,6 @@ const Home = () => {
 	const [searchData, setSearchData] = useState(null)
 
 	const receiveData = data => {
-		console.log(data)
 		setSearchData(data)
 	}
 
