@@ -9,6 +9,7 @@ import TestIGDB from './TestIGDB'
 import TestMongoDB from './TestMongoDB'
 
 export const Layout = () => {
+	console.log('environment: ' + process.env)
 	return (
 		<>
 			<Router>
