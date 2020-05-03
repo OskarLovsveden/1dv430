@@ -8,5 +8,4 @@ module.exports = function (app) {
 			changeOrigin: true
 		})
 	)
-	// app.use(proxy('/games', { target: process.env.REACT_APP_IGDB_URL }))
 }
