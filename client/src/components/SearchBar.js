@@ -14,7 +14,6 @@ const SearchBar = ({ passUp, placeholder }) => {
 	}
 
 	const onWriteInput = event => {
-		console.log('Writing Input: ', event.target.value)
 		setInput(event.target.value)
 	}
 
@@ -38,7 +37,7 @@ const SearchBar = ({ passUp, placeholder }) => {
 
 // Proptypes
 SearchBar.propTypes = {
-	passUp: PropTypes.func,
+	passUp: PropTypes.func.isRequired,
 	placeholder: PropTypes.string
 }
 
