@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 // Apicalypse
-import apicalypseHelpers from '../apicalypseHelpers'
+import apicalypseHelpers from '../helpers/apicalypseHelpers'
 
 const SearchBar = ({ passUp, placeholder }) => {
 	const [input, setInput] = useState(null)
