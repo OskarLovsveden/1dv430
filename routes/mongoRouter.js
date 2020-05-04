@@ -3,9 +3,7 @@ const router = express.Router()
 
 const controller = require('../controllers/mongoController')
 
-router.get('/', (req, res) => res.sendStatus(200))
-router.get('/test-get', controller.testGet)
-router.post('/test-post', controller.testPost)
-router.post('/test-remove', controller.testRemoveAll)
+router.get('/lists', controller.getLists)
+router.post('/lists/new', controller.newList)
 
 module.exports = router
