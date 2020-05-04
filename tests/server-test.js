@@ -10,18 +10,6 @@ chai.use(chaiHttp)
 const expect = chai.expect
 
 describe('Expect Express', () => {
-	describe('Route /', () => {
-		it('url: /\n\tshould return 200 status', done => {
-			chai
-				.request(app)
-				.get('/')
-				.end((err, res) => {
-					expect(res.status).to.equal(200)
-					done()
-				})
-		})
-	})
-
 	// MongoDB routes
 	describe('Route /mongo', () => {
 		before(done => {
