@@ -146,6 +146,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # Tests
-'tests/'
+tests/
 
 # End of https://www.gitignore.io/api/node,windows,visualstudiocode
