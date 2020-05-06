@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import Layout from './components/Layout'
+import Layout from './layout/Layout'
 
 // import * as serviceWorker from './serviceWorker';
 
