@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const config = require('./dotenv')
+const { DB_STRING } = config
 
 module.exports.connect = async () => {
 	// Bind connection to events (to get notifications).
@@ -23,7 +25,7 @@ module.exports.connect = async () => {
 	})
 
 	// Connect to the server.
-	return mongoose.connect(process.env.DB_CONNECTION_STRING, {
+	return mongoose.connect(DB_STRING, {
 		useCreateIndex: true,
 		useNewUrlParser: true,
 		useUnifiedTopology: true
