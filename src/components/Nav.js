@@ -29,6 +29,11 @@ const Nav = () => {
 							Home
 						</NavLink>
 					</li>
+					<li className="nav-item">
+						<NavLink activeStyle={activeLink} className="nav-link" to="/about">
+							About
+						</NavLink>
+					</li>
 				</ul>
 
 				<form className="form-inline">
