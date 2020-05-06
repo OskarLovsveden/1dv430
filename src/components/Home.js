@@ -5,11 +5,19 @@ import axios from 'axios'
 import SearchBar from '../components/SearchBar'
 
 const Home = () => {
-	const [searchData, setSearchData] = useState([])
+	const [gameData, setGameData] = useState([])
+	const [isLoading, setIsLoading] = useState(false)
+
+	if (gameData.length === 0) console.log('is empty')
+	if (gameData.length !== 0) console.log('got data')
 
 	const receiveData = data => {
-		setSearchData(data)
 		console.log(data)
+		setGameData(data)
+	}
+
+	const checkIfLoading = loading => {
+		setIsLoading(loading)
 	}
 
 	const newList = async () => {
@@ -18,7 +26,7 @@ const Home = () => {
 	}
 
 	const saveGame = async event => {
-		const testdata = searchData.find(
+		const testdata = gameData.find(
 			game => game.id === parseInt(event.target.id, 10)
 		)
 		console.log(testdata)
@@ -27,15 +35,17 @@ const Home = () => {
 	return (
 		<div>
 			<SearchBar
-				passUp={receiveData}
+				data={receiveData}
+				loading={checkIfLoading}
 				placeholder="Search for a game..."
 			></SearchBar>
 			<button onClick={newList} className="btn btn-sm">
 				Add new list
 			</button>
+			{isLoading ? 'Loading' : null}
 			<ul>
-				{searchData
-					? searchData.map(game => (
+				{gameData
+					? gameData.map(game => (
 							<li key={game.id}>
 								{game.name}
 								<button id={game.id} onClick={saveGame} className="btn btn-sm">

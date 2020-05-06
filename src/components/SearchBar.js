@@ -1,16 +1,22 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-// Apicalypse
-import apicalypseHelpers from '../helpers/apicalypseHelpers'
+import axios from 'axios'
 
-const SearchBar = ({ passUp, placeholder }) => {
+const SearchBar = ({ data, loading, placeholder }) => {
 	const [input, setInput] = useState(null)
 
 	const onSubmitForm = async event => {
 		event.preventDefault()
-		const data = await apicalypseHelpers.getGames(input)
-		passUp(data)
+		loading(true)
+		try {
+			const response = await axios(`/igdb/games/${input}`)
+			loading(false)
+			data(response.data)
+		} catch (error) {
+			console.error(error.message)
+			loading(false)
+		}
 	}
 
 	const onWriteInput = event => {
@@ -37,7 +43,8 @@ const SearchBar = ({ passUp, placeholder }) => {
 
 // Proptypes
 SearchBar.propTypes = {
-	passUp: PropTypes.func.isRequired,
+	data: PropTypes.func.isRequired,
+	loading: PropTypes.func.isRequired,
 	placeholder: PropTypes.string
 }
 
