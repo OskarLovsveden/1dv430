@@ -17,16 +17,15 @@ mongoose.connect().catch(error => {
 })
 
 // routes
-app.get('/test-env', (req, res) => res.json(process.env.TEST))
 app.use('/igdb', require('./routes/igdbRouter'))
 app.use('/mongo', require('./routes/mongoRouter'))
 
 // Serve static assets if in production.
 if (process.env.NODE_ENV === 'production') {
 	// Set static folder
-	app.use(express.static('client/build'))
+	app.use(express.static(path.resolve(__dirname, '..', 'build')))
 	app.get('*', (req, res) => {
-		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+		res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'))
 	})
 }
 
