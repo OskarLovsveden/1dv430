@@ -1,20 +1,22 @@
-// Axios
-const axios = require('axios')
+const IGDB = require('../helpers/igdbHelpers')
 
-const igdbController = {}
-
-// Test IGDB connection
-const pingIGDB = async () => {
-	const response = await axios('https://api-v3.igdb.com')
-	return response.data
-}
-
-igdbController.test = async (req, res) => {
-	try {
-		const test = await pingIGDB()
-		res.json(test)
-	} catch (error) {
-		console.error(error.message)
+const igdbController = {
+	test: async (req, res) => {
+		try {
+			const response = await IGDB.ping()
+			res.json(response)
+		} catch (error) {
+			console.error(error.message)
+		}
+	},
+	games: async (req, res) => {
+		try {
+			const input = req.params.input
+			const data = await IGDB.getGames(input)
+			res.json(data)
+		} catch (error) {
+			console.error(error.message)
+		}
 	}
 }
 
