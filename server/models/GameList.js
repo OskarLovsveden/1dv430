@@ -3,7 +3,9 @@ const mongoose = require('mongoose')
 // Create a schema.
 const gameListSchema = new mongoose.Schema(
 	{
-		games: Array
+		name: String,
+		ownerID: Number,
+		gamesArray: [Object]
 	},
 	{
 		timestamps: true,
