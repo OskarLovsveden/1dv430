@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import Nav from '../components/Nav'
 import Home from '../components/Home'
+import Lists from '../components/Lists'
 import About from '../components/About'
 import NotFound from '../components/NotFound'
 
@@ -11,6 +12,9 @@ const Routes = () => (
 		<Nav />
 		<div>
 			<Switch>
+				<Route path="/lists">
+					<Lists />
+				</Route>
 				<Route path="/about">
 					<About />
 				</Route>
