@@ -34,6 +34,11 @@ const Nav = () => {
 							About
 						</NavLink>
 					</li>
+					<li className="nav-item">
+						<NavLink activeStyle={activeLink} className="nav-link" to="/lists">
+							Lists
+						</NavLink>
+					</li>
 				</ul>
 
 				<form className="form-inline">
