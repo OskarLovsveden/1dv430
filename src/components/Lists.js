@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import mongoHelper from '../helpers/mongoHelper'
+const { getLists, newList } = mongoHelper
 
 const Lists = () => {
 	const [lists, setLists] = useState([])
 
 	useEffect(() => {
-		const getLists = async () => {
-			const data = await mongoHelper.getLists()
+		const getListsOnRender = async () => {
+			const data = await getLists()
 			setLists(data)
 		}
-		getLists()
+		getListsOnRender()
 	}, [])
 
 	return (
 		<div>
+			<button onClick={newList} className="btn btn-sm">
+				Add new list
+			</button>
 			<ul>
 				{lists.length
 					? lists.map(list => <li key={list._id}>{list.name}</li>)
