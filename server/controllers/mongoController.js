@@ -1,13 +1,22 @@
+const { generateName } = require('../helpers/nameHelper')
 const GameList = require('../models/GameList')
+
 const mongoController = {
 	newList: async (req, res) => {
-		const gameList = new GameList()
+		const listName = generateName()
+		const gameList = new GameList({ name: listName })
 		await gameList.save()
 		res.json('New list added.')
 	},
 	getLists: async (req, res) => {
 		const lists = await GameList.find()
 		res.json(lists)
+	},
+	getList: async (req, res) => {
+		const id = req.params.id
+
+		const list = await GameList.findById({ _id: id })
+		res.json(list)
 	}
 	// testGet: async (req, res) => {
 	// 	try {
