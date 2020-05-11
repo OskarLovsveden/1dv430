@@ -6,12 +6,16 @@ import Home from '../components/Home'
 import Lists from '../components/Lists'
 import About from '../components/About'
 import NotFound from '../components/NotFound'
+import List from '../components/List'
 
 const Routes = () => (
 	<Router>
 		<Nav />
 		<div>
 			<Switch>
+				<Route path="/list/:id">
+					<List />
+				</Route>
 				<Route path="/lists">
 					<Lists />
 				</Route>
