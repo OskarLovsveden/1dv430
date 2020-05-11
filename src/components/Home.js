@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 // Components
 import SearchBar from '../components/SearchBar'
+import GameCard from './GameCard'
 
 const Home = () => {
 	const [gameData, setGameData] = useState([])
@@ -16,13 +17,6 @@ const Home = () => {
 		setIsLoading(loading)
 	}
 
-	const saveGame = async event => {
-		const testdata = gameData.find(
-			game => game.id === parseInt(event.target.id, 10)
-		)
-		console.log(testdata)
-	}
-
 	return (
 		<div>
 			<SearchBar
@@ -31,18 +25,15 @@ const Home = () => {
 				placeholder="Search for a game..."
 			></SearchBar>
 			{isLoading ? 'Loading' : null}
-			<ul>
-				{gameData
-					? gameData.map(game => (
-							<li key={game.id}>
-								{game.name}
-								<button id={game.id} onClick={saveGame} className="btn btn-sm">
-									Add to list
-								</button>
-							</li>
-					  ))
-					: null}
-			</ul>
+			{gameData
+				? gameData.map(game => (
+						<GameCard
+							key={game.id}
+							gameID={game.id}
+							gameName={game.name}
+						></GameCard>
+				  ))
+				: null}
 		</div>
 	)
 }
