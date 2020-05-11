@@ -6,7 +6,7 @@ const mongoController = {
 		const listName = generateName()
 		const gameList = new GameList({ name: listName })
 		await gameList.save()
-		res.json('New list added.')
+		res.json({ message: 'New list added.', list: gameList })
 	},
 	getLists: async (req, res) => {
 		const lists = await GameList.find()
