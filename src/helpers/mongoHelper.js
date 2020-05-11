@@ -1,16 +1,20 @@
 import axios from 'axios'
 
 const mongoHelper = {
-	newList: async (req, res) => {
+	newList: async () => {
 		const response = await axios.post('mongo/lists/new')
-		console.log(response)
+		return response.data.list
 	},
-	getLists: async (req, res) => {
+	getLists: async () => {
 		const response = await axios('/mongo/lists')
 		return response.data
 	},
 	getList: async id => {
 		const response = await axios(`/mongo/list/${id}`)
+		return response.data
+	},
+	saveGame: async (id, name) => {
+		const response = await axios()
 		return response.data
 	}
 }
