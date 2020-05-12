@@ -2,9 +2,7 @@ import React, { createContext, useReducer } from 'react'
 import GameReducer from './GameReducer'
 
 // Initial State
-const initialState = {
-	game: {}
-}
+const initialState = {}
 
 // Create context
 export const GameContext = createContext(initialState)
@@ -19,7 +17,6 @@ export const GameProvider = ({ children }) => {
 			type: 'SET_GAME',
 			payload: game
 		})
-		console.log('Game set in provider.')
 	}
 
 	return (
