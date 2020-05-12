@@ -7,7 +7,7 @@ const Nav = () => {
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark primary-color">
 			<NavLink className="navbar-brand" to="/">
-				Navbar
+				Home
 			</NavLink>
 
 			<button
@@ -25,23 +25,13 @@ const Nav = () => {
 			<div className="collapse navbar-collapse" id="app-navbar">
 				<ul className="navbar-nav mr-auto">
 					<li className="nav-item">
-						<NavLink exact activeStyle={activeLink} className="nav-link" to="/">
-							Home
-						</NavLink>
-					</li>
-					<li className="nav-item">
-						<NavLink activeStyle={activeLink} className="nav-link" to="/about">
-							About
-						</NavLink>
-					</li>
-					<li className="nav-item">
 						<NavLink activeStyle={activeLink} className="nav-link" to="/lists">
 							Lists
 						</NavLink>
 					</li>
 				</ul>
 
-				<form className="form-inline">
+				{/* <form className="form-inline" onSubmit={e => console.log(e.target)}>
 					<div className="md-form my-0">
 						<input
 							className="form-control mr-sm-2"
@@ -50,7 +40,7 @@ const Nav = () => {
 							aria-label="Search"
 						></input>
 					</div>
-				</form>
+				</form> */}
 			</div>
 		</nav>
 	)
