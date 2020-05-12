@@ -14,9 +14,14 @@ const Lists = () => {
 		getListsOnRender()
 	}, [])
 
+	const addNewList = async () => {
+		const list = await newList()
+		setLists([...lists, list])
+	}
+
 	return (
 		<div>
-			<button onClick={newList} className="btn btn-sm">
+			<button onClick={addNewList} className="btn btn-sm">
 				Add new list
 			</button>
 			<ul>
