@@ -3,23 +3,23 @@ import PropTypes from 'prop-types'
 
 import axios from 'axios'
 
-const SearchBar = ({ data, loading, placeholder }) => {
+const SearchBar = ({ value, loading, placeholder }) => {
 	const [input, setInput] = useState(null)
 
-	const onSubmitForm = async event => {
+	const handleSubmit = async event => {
 		event.preventDefault()
 		loading(true)
 		try {
 			const response = await axios(`/igdb/games/${input}`)
 			loading(false)
-			data(response.data)
+			value(response.data)
 		} catch (error) {
 			console.error(error.message)
 			loading(false)
 		}
 	}
 
-	const onWriteInput = event => {
+	const handleChange = event => {
 		setInput(event.target.value)
 	}
 
@@ -30,11 +30,11 @@ const SearchBar = ({ data, loading, placeholder }) => {
 	}
 
 	return (
-		<form onSubmit={onSubmitForm}>
+		<form onSubmit={handleSubmit}>
 			<input
 				type="text"
 				onKeyPress={handleKeypress}
-				onChange={onWriteInput}
+				onChange={handleChange}
 				placeholder={placeholder}
 			></input>
 		</form>
@@ -43,7 +43,7 @@ const SearchBar = ({ data, loading, placeholder }) => {
 
 // Proptypes
 SearchBar.propTypes = {
-	data: PropTypes.func.isRequired,
+	value: PropTypes.func.isRequired,
 	loading: PropTypes.func.isRequired,
 	placeholder: PropTypes.string
 }
