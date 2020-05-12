@@ -8,31 +8,24 @@ const Home = () => {
 	const [gameData, setGameData] = useState([])
 	const [isLoading, setIsLoading] = useState(false)
 
-	const receiveData = data => {
-		console.log(data)
-		setGameData(data)
+	const handleValue = value => {
+		setGameData(value)
 	}
 
-	const checkIfLoading = loading => {
+	const handleLoading = loading => {
 		setIsLoading(loading)
 	}
 
 	return (
 		<div>
 			<SearchBar
-				data={receiveData}
-				loading={checkIfLoading}
+				value={handleValue}
+				loading={handleLoading}
 				placeholder="Search for a game..."
 			></SearchBar>
 			{isLoading ? 'Loading' : null}
 			{gameData
-				? gameData.map(game => (
-						<GameCard
-							key={game.id}
-							gameID={game.id}
-							gameName={game.name}
-						></GameCard>
-				  ))
+				? gameData.map(game => <GameCard key={game.id} game={game}></GameCard>)
 				: null}
 		</div>
 	)
