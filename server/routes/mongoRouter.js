@@ -5,9 +5,12 @@ const controller = require('../controllers/mongoController')
 
 // Lists
 router.get('/lists', controller.getLists)
-router.post('/lists/new', controller.newList)
 
 // List
 router.get('/list/:id', controller.getList)
+router.post('/list/new', controller.newList)
+
+// Game
+router.post('/save/:listid', controller.saveGame)
 
 module.exports = router
