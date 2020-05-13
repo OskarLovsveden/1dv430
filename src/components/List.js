@@ -19,7 +19,7 @@ const List = () => {
 			const list = await getList(id)
 			setName(list.name)
 			// setID(list._id)
-			setGames(list.gamesArray)
+			setGames(list.games)
 			setCreatedAt(moment(list.createdAt).format('YYYY-MM-DD'))
 		}
 		getListOnRender()
@@ -33,7 +33,7 @@ const List = () => {
 			<h5>Spel:</h5>
 			<ul>
 				{games.length ? (
-					games.map(game => <li>{game.name}</li>)
+					games.map(game => <li key={game.id}>{game.name}</li>)
 				) : (
 					<li>Du har inte lagt till några spel ännu... :&lt;</li>
 				)}
