@@ -3,12 +3,13 @@ const mongoose = require('./config/mongoose')
 const config = require('./config/dotenv')
 const { PORT } = config
 
-// Node
 const path = require('path')
-
-// Express
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 // connect to the database
 mongoose.connect().catch(error => {
