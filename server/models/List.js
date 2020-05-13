@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
 
 // Create a schema.
-const gameListSchema = new mongoose.Schema(
+const listSchema = new mongoose.Schema(
 	{
 		name: String,
 		ownerID: Number,
-		gamesArray: [Object]
+		games: [Object]
 	},
 	{
 		timestamps: true,
@@ -14,7 +14,7 @@ const gameListSchema = new mongoose.Schema(
 )
 
 // Create a model using the schema.
-const GameList = mongoose.model('GameList', gameListSchema)
+const List = mongoose.model('List', listSchema)
 
 // Exports
-module.exports = GameList
+module.exports = List
