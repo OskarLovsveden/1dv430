@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Select from 'react-select'
-// import { Redirect } from 'react-router-dom'
-// import { GameContext } from '../context/GameState'
+import { Redirect } from 'react-router-dom'
+import { GameContext } from '../context/GameState'
 
 import mongoHelper from '../helpers/mongoHelper'
-const { getLists } = mongoHelper
+const { getLists, saveGame } = mongoHelper
 
 const Game = () => {
 	const [lists, setLists] = useState([])
 	const [selectedOption, setSelectedOption] = useState()
-	// const { game } = useContext(GameContext)
+	const { game } = useContext(GameContext)
 
 	useEffect(() => {
 		const getListsOnRender = async () => {
@@ -26,23 +26,24 @@ const Game = () => {
 		}
 	})
 
-	// if (!game) {
-	// 	return <Redirect to="/"></Redirect>
-	// }
+	if (!game) {
+		return <Redirect to="/"></Redirect>
+	}
 
 	const handleChange = selectedOption => {
 		setSelectedOption(selectedOption)
 	}
 
-	const handleClick = () => {
+	const handleClick = async () => {
 		if (selectedOption) {
-			console.log(selectedOption)
+			const response = await saveGame(game, selectedOption.value)
+			console.log(response.message)
 		}
 	}
 
 	return (
 		<div>
-			{/* {game.name} */}
+			{game.name}
 			<Select
 				placeholder="Select list..."
 				value={selectedOption}
