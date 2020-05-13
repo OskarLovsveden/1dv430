@@ -7,12 +7,20 @@ import Lists from '../components/Lists'
 import NotFound from '../components/NotFound'
 import List from '../components/List'
 import Game from '../components/Game'
+import Register from '../components/Register'
+import Login from '../components/Login'
 
 const Routes = () => (
 	<Router>
 		<Nav />
 		<div>
 			<Switch>
+				<Route path="/register">
+					<Register />
+				</Route>
+				<Route path="/login">
+					<Login />
+				</Route>
 				<Route path="/game">
 					<Game />
 				</Route>
