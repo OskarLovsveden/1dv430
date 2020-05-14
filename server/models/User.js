@@ -1,3 +1,6 @@
+// https://gitlab.lnu.se/1dv023/student/ol222hf/assignment-2
+// Based on my userschema from the course 1dv023
+
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 
