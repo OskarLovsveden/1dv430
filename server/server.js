@@ -20,6 +20,7 @@ mongoose.connect().catch(error => {
 // routes
 app.use('/igdb', require('./routes/igdbRouter'))
 app.use('/mongo', require('./routes/mongoRouter'))
+app.use('/user', require('./routes/userRouter'))
 
 // Serve static assets if in production.
 if (process.env.NODE_ENV === 'production') {
