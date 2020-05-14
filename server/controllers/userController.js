@@ -1,3 +1,6 @@
+// https://gitlab.lnu.se/1dv023/student/ol222hf/assignment-2
+// Based on my controllers from the course 1dv023
+
 const User = require('../models/User')
 
 const userController = {}
