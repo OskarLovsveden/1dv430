@@ -1,21 +1,34 @@
 // Config
 const mongoose = require('./config/mongoose')
 const config = require('./config/dotenv')
-const { PORT } = config
+const { PORT, SESS_AGE, SESS_SECRET, SESS_NAME } = config
 
 const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
+const session = require('express-session')
 const app = express()
-
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
 
 // connect to the database
 mongoose.connect().catch(error => {
 	console.error(error)
 	process.exit(1)
 })
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+const sessionOptions = {
+	name: SESS_NAME,
+	secret: SESS_SECRET,
+	resave: false,
+	saveUninitialized: false,
+	cookie: {
+		maxAge: SESS_AGE
+	}
+}
+
+app.use(session(sessionOptions))
 
 // routes
 app.use('/igdb', require('./routes/igdbRouter'))
