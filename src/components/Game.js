@@ -37,7 +37,7 @@ const Game = () => {
 	const handleClick = async () => {
 		if (selectedOption) {
 			const response = await saveGame(game, selectedOption.value)
-			console.log(response.message)
+			console.log(response)
 		}
 	}
 

@@ -1,7 +1,7 @@
 // Config
 const mongoose = require('./config/mongoose')
 const config = require('./config/dotenv')
-const { PORT, SESS_AGE, SESS_SECRET, SESS_NAME } = config
+const { PORT, SESS_SECRET, SESS_NAME } = config
 
 const path = require('path')
 const express = require('express')
@@ -24,7 +24,7 @@ const sessionOptions = {
 	resave: false,
 	saveUninitialized: false,
 	cookie: {
-		maxAge: SESS_AGE
+		maxAge: 1000 * 60 * 60 * 24
 	}
 }
 

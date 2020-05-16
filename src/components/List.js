@@ -8,7 +8,6 @@ const { getList } = mongoHelper
 
 const List = () => {
 	const [name, setName] = useState('')
-	// const [ID, setID] = useState('')
 	const [games, setGames] = useState([])
 	const [createdAt, setCreatedAt] = useState('')
 
@@ -18,7 +17,6 @@ const List = () => {
 		const getListOnRender = async () => {
 			const list = await getList(id)
 			setName(list.name)
-			// setID(list._id)
 			setGames(list.games)
 			setCreatedAt(moment(list.createdAt).format('YYYY-MM-DD'))
 		}
