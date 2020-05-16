@@ -30,14 +30,14 @@ userController.register = async (req, res) => {
 
 userController.login = async (req, res) => {
 	try {
-		//   if (req.session.user) throw new Error('User already logged in.')
+		if (req.session.user) throw new Error('User already logged in.')
 
-		// const user = await User.authenticate(req.body.username, req.body.password)
-		//   req.session.regenerate(() => {})
+		const user = await User.authenticate(req.body.username, req.body.password)
+		req.session.regenerate(() => {})
 
-		// if (user.username) {
-		//     req.session.user = user.username
-		// }
+		if (user.username) {
+			req.session.user = user.username
+		}
 
 		await User.authenticate(req.body.username, req.body.password)
 
