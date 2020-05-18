@@ -36,9 +36,7 @@ userController.login = async (req, res) => {
 
 		const user = await User.authenticate(req.body.username, req.body.password)
 		req.session.regenerate(() => {
-			// if (user.username) {
 			req.session.user = user.username
-			// }
 
 			const message = { type: 'success', text: 'Login successful.' }
 			res.json(message)
