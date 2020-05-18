@@ -5,6 +5,7 @@ const User = require('../models/User')
 
 const userController = {}
 
+// Register
 userController.register = async (req, res) => {
 	try {
 		const exists = await User.findOne({ username: req.body.username })
@@ -28,24 +29,36 @@ userController.register = async (req, res) => {
 	}
 }
 
+// Login
 userController.login = async (req, res) => {
 	try {
 		if (req.session.user) throw new Error('User already logged in.')
 
 		const user = await User.authenticate(req.body.username, req.body.password)
-		req.session.regenerate(() => {})
-
-		if (user.username) {
+		req.session.regenerate(() => {
+			// if (user.username) {
 			req.session.user = user.username
-		}
+			// }
 
-		await User.authenticate(req.body.username, req.body.password)
-
-		const message = { type: 'success', text: 'Login successful.' }
-		res.json(message)
+			const message = { type: 'success', text: 'Login successful.' }
+			res.json(message)
+		})
 	} catch (error) {
 		const message = { type: 'danger', text: error.message }
 		res.json(message)
+	}
+}
+
+// Check for session
+userController.session = async (req, res) => {
+	try {
+		if (req.session.user) {
+			res.json(req.session.user)
+		} else {
+			res.json(null)
+		}
+	} catch (error) {
+		console.error(error)
 	}
 }
 
