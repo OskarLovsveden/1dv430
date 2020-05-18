@@ -9,10 +9,12 @@ import List from '../components/List'
 import Game from '../components/Game'
 import Register from '../components/Register'
 import Login from '../components/Login'
+import Flash from '../components/Flash'
 
 const Routes = () => (
 	<Router>
 		<Nav />
+		<Flash />
 		<div>
 			<Switch>
 				<Route path="/register">
