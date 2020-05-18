@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { GlobalContext } from '../context/GlobalState'
 import { NavLink } from 'react-router-dom'
 
 const activeLink = { backgroundColor: 'rgba(255, 255, 255, 0.2)' }
 
 const Nav = () => {
+	const { user } = useContext(GlobalContext)
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark primary-color">
 			<NavLink className="navbar-brand" to="/">
@@ -29,18 +31,28 @@ const Nav = () => {
 							Lists
 						</NavLink>
 					</li>
+					{!user ? (
+						<li className="nav-item">
+							<NavLink
+								activeStyle={activeLink}
+								className="nav-link"
+								to="/login"
+							>
+								Login
+							</NavLink>
+						</li>
+					) : (
+						<li className="nav-item">
+							<NavLink
+								activeStyle={activeLink}
+								className="nav-link"
+								to="/logout"
+							>
+								Logout
+							</NavLink>
+						</li>
+					)}
 				</ul>
-
-				{/* <form className="form-inline" onSubmit={e => console.log(e.target)}>
-					<div className="md-form my-0">
-						<input
-							className="form-control mr-sm-2"
-							type="text"
-							placeholder="Search"
-							aria-label="Search"
-						></input>
-					</div>
-				</form> */}
 			</div>
 		</nav>
 	)
