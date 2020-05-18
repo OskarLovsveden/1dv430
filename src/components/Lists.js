@@ -1,22 +1,32 @@
 import React, { useEffect, useState } from 'react'
-
-import mongoHelper from '../helpers/mongoHelper'
-const { getLists, newList } = mongoHelper
+import axios from 'axios'
 
 const Lists = () => {
 	const [lists, setLists] = useState([])
 
 	useEffect(() => {
 		const getListsOnRender = async () => {
-			const data = await getLists()
-			setLists(data)
+			try {
+				const response = await axios('/mongo/lists')
+				setLists(response.data)
+			} catch (error) {
+				console.error(error.message)
+			}
 		}
 		getListsOnRender()
 	}, [])
 
 	const addNewList = async () => {
-		const list = await newList()
-		setLists([...lists, list])
+		try {
+			const response = await axios({
+				method: 'post',
+				url: 'mongo/list/new'
+			})
+			const data = response.data
+			setLists([...lists, data.list])
+		} catch (error) {
+			console.error(error.message)
+		}
 	}
 
 	return (
