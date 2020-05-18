@@ -2,9 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Select from 'react-select'
 import { Redirect } from 'react-router-dom'
 import { GameContext } from '../context/GameState'
-
-import mongoHelper from '../helpers/mongoHelper'
-const { getLists, saveGame } = mongoHelper
+import axios from 'axios'
 
 const Game = () => {
 	const [lists, setLists] = useState([])
@@ -13,8 +11,13 @@ const Game = () => {
 
 	useEffect(() => {
 		const getListsOnRender = async () => {
-			const listsData = await getLists()
-			setLists(listsData)
+			try {
+				const response = await axios('/mongo/lists')
+				const data = response.data
+				setLists(data)
+			} catch (error) {
+				console.error(error.message)
+			}
 		}
 		getListsOnRender()
 	}, [])
@@ -36,8 +39,17 @@ const Game = () => {
 
 	const handleClick = async () => {
 		if (selectedOption) {
-			const response = await saveGame(game, selectedOption.value)
-			console.log(response)
+			const listID = selectedOption.value
+			try {
+				const response = await axios({
+					method: 'post',
+					url: `/mongo/save/${listID}`,
+					data: game
+				})
+				console.log(response.data)
+			} catch (error) {
+				console.error(error)
+			}
 		}
 	}
 
