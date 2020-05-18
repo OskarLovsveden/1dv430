@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { GlobalContext } from '../context/GlobalState'
+import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 const Login = () => {
+	const { userLogin, setFlash } = useContext(GlobalContext)
+	const history = useHistory()
+
 	const [username, setUsername] = useState(null)
 	const [password, setPassword] = useState(null)
-	const [flash, setFlash] = useState(null)
 
 	const handleChange = event => {
 		event.preventDefault()
@@ -24,24 +28,28 @@ const Login = () => {
 
 	const loginUser = async event => {
 		event.preventDefault()
-		const response = await axios({
-			method: 'post',
-			url: 'user/login',
-			data: {
-				username: username,
-				password: password
+		try {
+			const response = await axios({
+				method: 'post',
+				url: 'user/login',
+				data: {
+					username: username,
+					password: password
+				}
+			})
+			const data = response.data
+			if (data.type === 'success') {
+				userLogin(username)
+				setFlash(data)
 			}
-		})
-		setFlash(response.data)
+			history.push('/')
+		} catch (error) {
+			console.error(error.message)
+		}
 	}
 
 	return (
 		<>
-			{flash && (
-				<div className={`alert alert-${flash.type}`} role="alert">
-					{flash.text}
-				</div>
-			)}
 			<div className="d-flex justify-content-center pb-5">
 				<form className="text-center p-5">
 					<p className="h4 mb-4">Login</p>
