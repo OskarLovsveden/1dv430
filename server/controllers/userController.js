@@ -49,6 +49,18 @@ userController.login = async (req, res) => {
 	}
 }
 
+// Logout
+userController.logout = async (req, res) => {
+	try {
+		req.session.destroy()
+
+		const message = { type: 'success', text: 'Logout successful.' }
+		res.json(message)
+	} catch (error) {
+		console.error(error.message)
+	}
+}
+
 // Check for session
 userController.session = async (req, res) => {
 	try {
