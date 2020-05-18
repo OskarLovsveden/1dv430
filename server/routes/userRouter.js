@@ -9,7 +9,8 @@ router.get('/session', controller.session)
 // Register
 router.post('/register', controller.register)
 
-// Login
+// Login & Logout
 router.post('/login', controller.login)
+router.post('/logout', controller.logout)
 
 module.exports = router
