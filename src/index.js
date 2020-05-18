@@ -2,13 +2,16 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Layout from './layout/Layout'
 import { GameProvider } from './context/GameState'
+import { GlobalProvider } from './context/GlobalState'
 
 // import * as serviceWorker from './serviceWorker';
 
 const app = (
-	<GameProvider>
-		<Layout />
-	</GameProvider>
+	<GlobalProvider>
+		<GameProvider>
+			<Layout />
+		</GameProvider>
+	</GlobalProvider>
 )
 
 ReactDOM.render(app, document.getElementById('root'))
