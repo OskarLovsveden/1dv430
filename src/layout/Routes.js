@@ -10,6 +10,7 @@ import Game from '../components/Game'
 import Register from '../components/Register'
 import Login from '../components/Login'
 import Flash from '../components/Flash'
+import Logout from '../components/Logout'
 
 const Routes = () => (
 	<Router>
@@ -19,6 +20,9 @@ const Routes = () => (
 			<Switch>
 				<Route path="/register">
 					<Register />
+				</Route>
+				<Route path="/logout">
+					<Logout />
 				</Route>
 				<Route path="/login">
 					<Login />
