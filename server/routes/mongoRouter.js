@@ -8,9 +8,9 @@ router.get('/lists', controller.getLists)
 
 // List
 router.get('/list/:id', controller.getList)
-router.post('/list/new', controller.newList)
+router.post('/list/new', controller.isUserLoggedIn, controller.newList)
 
-// Game
-router.post('/save/:listid', controller.saveGame)
+// Save game
+router.post('/save/:listid', controller.isUserLoggedIn, controller.saveGame)
 
 module.exports = router
