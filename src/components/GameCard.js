@@ -16,7 +16,10 @@ const GameCard = ({ game }) => {
 		<div className="card">
 			<div className="card-body">
 				{game.name}
-				<button onClick={handleClick}>View Game</button>
+				<br></br>
+				<button className="btn btn-sm" onClick={handleClick}>
+					View Game
+				</button>
 			</div>
 		</div>
 	)
