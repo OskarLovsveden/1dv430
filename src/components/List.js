@@ -1,45 +1,57 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { GlobalContext } from '../context/GlobalState'
 import { useParams } from 'react-router-dom'
 
 import axios from 'axios'
 import moment from 'moment'
 
 const List = () => {
-	const [name, setName] = useState('')
-	const [games, setGames] = useState([])
-	const [createdAt, setCreatedAt] = useState('')
-
 	const { id } = useParams()
+	const { user } = useContext(GlobalContext)
+
+	const [list, setList] = useState(null)
+	const [editable, isEditable] = useState(false)
 
 	useEffect(() => {
 		const getListOnRender = async () => {
 			try {
 				const response = await axios(`/mongo/list/${id}`)
 				const data = response.data
-				setName(data.name)
-				setGames(data.games)
-				setCreatedAt(moment(data.createdAt).format('YYYY-MM-DD'))
+				setList(data)
+				isEditable(data.author === user)
 			} catch (error) {
 				console.error(error.message)
 			}
 		}
 		getListOnRender()
-	}, [id])
+	}, [id, user])
 
 	return (
-		<div>
-			<h5>Name: {name}</h5>
-			<h5>Created at: {createdAt}</h5>
-			<hr></hr>
-			<h5>Spel:</h5>
-			<ul>
-				{games.length ? (
-					games.map(game => <li key={game.id}>{game.name}</li>)
-				) : (
-					<li>Du har inte lagt till några spel ännu... :&lt;</li>
-				)}
-			</ul>
-		</div>
+		list && (
+			<div>
+				<h5>{list.name}</h5>
+				<p className="text-muted">
+					Created at: {moment(list.createdAt).format('YYYY-MM-DD')}
+				</p>
+				<ul className="list-group">
+					{list.games.length ? (
+						list.games.map(game => (
+							<li className="list-group-item" key={game.id}>
+								{game.name}
+								{editable && (
+									<>
+										<button className="btn btn-sm mr2">Edit</button>
+										<button className="btn btn-sm mr2">Delete</button>
+									</>
+								)}
+							</li>
+						))
+					) : (
+						<li className="list-group-item">No games here... :&lt;</li>
+					)}
+				</ul>
+			</div>
+		)
 	)
 }
 
