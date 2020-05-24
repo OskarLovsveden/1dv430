@@ -74,9 +74,29 @@ mongoController.saveGame = async (req, res) => {
 
 // Check if user is logged in
 mongoController.isUserLoggedIn = async (req, res, next) => {
-	if (!req.session.user) {
-		return next(createError(403, 'Forbidden access'))
+	try {
+		if (!req.session.user) {
+			return next(createError(403, 'Forbidden access'))
+		}
+		next()
+	} catch (error) {
+		next(error)
 	}
-	next()
 }
+
+// Authorize user for CRUD functionality
+mongoController.authorizeUser = async (req, res, next) => {
+	try {
+		const list = await List.findOne({ _id: req.params.id })
+		if (req.session.user !== list.author) {
+			return next(createError(403))
+		}
+		req.list = list
+
+		next()
+	} catch (error) {
+		next(error)
+	}
+}
+
 module.exports = mongoController
