@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 const Lists = () => {
+	const history = useHistory()
 	const [lists, setLists] = useState([])
 
 	useEffect(() => {
@@ -31,18 +33,23 @@ const Lists = () => {
 
 	return (
 		<div>
-			<button onClick={addNewList} className="btn btn-sm">
+			<button onClick={addNewList} className="btn btn-m">
 				Add new list
 			</button>
-			<ul>
+			<div className="list-group">
 				{lists.length
 					? lists.map(list => (
-							<li key={list._id}>
-								<a href={`/list/${list._id}`}>{list.name}</a>
-							</li>
+							<button
+								type="button"
+								className="list-group-item list-group-item-action"
+								key={list._id}
+								onClick={() => history.push(`/list/${list._id}`)}
+							>
+								{list.name}
+							</button>
 					  ))
 					: null}
-			</ul>
+			</div>
 		</div>
 	)
 }
