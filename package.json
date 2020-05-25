@@ -17,6 +17,7 @@
 		"http-errors": "^1.7.3",
 		"moment": "^2.25.3",
 		"mongoose": "^5.9.12",
+		"nyc": "^15.0.1",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
 		"react-router-dom": "^5.1.2",
@@ -32,7 +33,7 @@
 		"build": "react-scripts build",
 		"eject": "react-scripts eject",
 		"test": "react-scripts test",
-		"test-mocha": "mocha server/tests/*.js --exit"
+		"test-mocha": "nyc --reporter=html mocha server/tests/*.js --exit"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
