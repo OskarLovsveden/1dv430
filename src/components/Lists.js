@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import axios from 'axios'
 
 const Lists = () => {
 	const history = useHistory()
+	const location = useLocation()
 	const [lists, setLists] = useState([])
 
 	useEffect(() => {
@@ -37,6 +38,7 @@ const Lists = () => {
 
 	return (
 		<div>
+			{location.state && console.log(location.state)}
 			<button onClick={addNewList} className="btn btn-m">
 				Add new list
 			</button>
