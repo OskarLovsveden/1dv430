@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Layout from './layout/Layout'
+import App from './layout/App'
 import { GameProvider } from './context/GameState'
 import { GlobalProvider } from './context/GlobalState'
 
@@ -9,7 +9,7 @@ import { GlobalProvider } from './context/GlobalState'
 const app = (
 	<GlobalProvider>
 		<GameProvider>
-			<Layout />
+			<App />
 		</GameProvider>
 	</GlobalProvider>
 )

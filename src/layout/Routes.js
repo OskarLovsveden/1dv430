@@ -1,21 +1,20 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-import Nav from '../components/Nav'
 import Home from '../components/Home'
 import Lists from '../components/Lists'
 import NotFound from '../components/errors/NotFound'
 import List from '../components/List'
 import Game from '../components/Game'
-import Register from '../components/Register'
-import Login from '../components/Login'
+import Register from '../components/account/Register'
+import Login from '../components/account/Login'
 import Flash from '../components/Flash'
-import Logout from '../components/Logout'
+import Logout from '../components/account/Logout'
 import ListEdit from '../components/ListEdit'
 
-const Routes = () => (
+const Routes = ({ children }) => (
 	<Router>
-		<Nav />
+		{children}
 		<Flash />
 		<div>
 			<Switch>
