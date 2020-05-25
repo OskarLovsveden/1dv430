@@ -31,6 +31,10 @@ const Lists = () => {
 		}
 	}
 
+	const redirectToList = list => {
+		history.push({ pathname: '/list', state: list })
+	}
+
 	return (
 		<div>
 			<button onClick={addNewList} className="btn btn-m">
@@ -43,7 +47,7 @@ const Lists = () => {
 								type="button"
 								className="list-group-item list-group-item-action"
 								key={list._id}
-								onClick={() => history.push(`/list/${list._id}`)}
+								onClick={() => redirectToList(list)}
 							>
 								{list.name}
 							</button>
