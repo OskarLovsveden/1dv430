@@ -1,13 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Select from 'react-select'
-import { Redirect } from 'react-router-dom'
-import { GameContext } from '../context/GameState'
+import { useHistory, useLocation } from 'react-router-dom'
 import axios from 'axios'
 
 const Game = () => {
+	const history = useHistory()
+	const location = useLocation()
+	const [game] = useState(location.state)
 	const [lists, setLists] = useState([])
 	const [selectedOption, setSelectedOption] = useState()
-	const { game } = useContext(GameContext)
 
 	useEffect(() => {
 		const getListsOnRender = async () => {
@@ -22,16 +23,7 @@ const Game = () => {
 		getListsOnRender()
 	}, [])
 
-	const options = lists.map(list => {
-		return {
-			value: list._id,
-			label: list.name
-		}
-	})
-
-	if (!game) {
-		return <Redirect to="/"></Redirect>
-	}
+	if (!game) history.push('/')
 
 	const handleChange = selectedOption => {
 		setSelectedOption(selectedOption)
@@ -52,6 +44,13 @@ const Game = () => {
 			}
 		}
 	}
+
+	const options = lists.map(list => {
+		return {
+			value: list._id,
+			label: list.name
+		}
+	})
 
 	return (
 		<div>
