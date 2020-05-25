@@ -11,6 +11,7 @@ import Register from '../components/Register'
 import Login from '../components/Login'
 import Flash from '../components/Flash'
 import Logout from '../components/Logout'
+import ListEdit from '../components/ListEdit'
 
 const Routes = () => (
 	<Router>
@@ -18,6 +19,9 @@ const Routes = () => (
 		<Flash />
 		<div>
 			<Switch>
+				<Route path="/list-edit/:id">
+					<ListEdit />
+				</Route>
 				<Route path="/register">
 					<Register />
 				</Route>
