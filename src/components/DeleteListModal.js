@@ -1,17 +1,28 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import axios from 'axios'
 
 const DeleteListModal = ({ listID }) => {
-	const deleteList = event => {
+	const history = useHistory()
+
+	const deleteList = async event => {
 		event.preventDefault()
-		console.log(listID)
+		const response = await axios({
+			method: 'post',
+			url: `/mongo/list/delete/${listID}`
+		})
+		if (response.data.type === 'success') {
+			history.push({ pathname: '/lists', state: response.data })
+		} else {
+			console.log(response.data)
+		}
 	}
 
 	return (
 		<>
 			<button
 				type="button"
-				className="btn btn-sm btn-danger float-right"
+				className="btn btn-sm btn-outline-danger float-right"
 				data-toggle="modal"
 				data-target="#deleteModal"
 			>
@@ -35,14 +46,15 @@ const DeleteListModal = ({ listID }) => {
 						<div className="modal-footer">
 							<button
 								type="button"
-								className="btn btn-primary"
+								className="btn btn-outline-default"
 								data-dismiss="modal"
 							>
 								Close
 							</button>
 							<button
 								type="button"
-								className="btn btn-danger"
+								className="btn btn-outline-danger"
+								data-dismiss="modal"
 								onClick={deleteList}
 							>
 								Delete
