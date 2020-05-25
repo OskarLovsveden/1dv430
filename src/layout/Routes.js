@@ -18,7 +18,7 @@ const Routes = ({ children }) => (
 		<Flash />
 		<div>
 			<Switch>
-				<Route path="/list-edit/:id">
+				<Route path="/list-edit">
 					<ListEdit />
 				</Route>
 				<Route path="/register">
@@ -33,7 +33,7 @@ const Routes = ({ children }) => (
 				<Route path="/game">
 					<Game />
 				</Route>
-				<Route path="/list/:id">
+				<Route path="/list">
 					<List />
 				</Route>
 				<Route path="/lists">
