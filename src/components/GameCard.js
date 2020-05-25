@@ -1,15 +1,12 @@
-import React, { useContext } from 'react'
-import { GameContext } from '../context/GameState'
+import React from 'react'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 const GameCard = ({ game }) => {
-	const { setGame } = useContext(GameContext)
 	const history = useHistory()
 
 	const handleClick = () => {
-		setGame(game)
-		history.push('/game')
+		history.push({ pathname: '/game', state: game })
 	}
 
 	return (
