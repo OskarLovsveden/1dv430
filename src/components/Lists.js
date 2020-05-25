@@ -39,7 +39,7 @@ const Lists = () => {
 	return (
 		<div>
 			{location.state && console.log(location.state)}
-			<button onClick={addNewList} className="btn btn-m">
+			<button onClick={addNewList} className="btn btn-m btn-outline-default">
 				Add new list
 			</button>
 			<div className="list-group">
