@@ -17,15 +17,24 @@ const SearchGame = () => {
 	}
 
 	return (
-		<div>
+		<>
 			<SearchBar
 				value={handleValue}
 				loading={handleLoading}
 				placeholder="Search for a game..."
 			></SearchBar>
-			{isLoading ? 'Loading' : null}
+			{isLoading && (
+				<div className="text-center p-5">
+					<div
+						className="spinner-border text-primary text-center"
+						role="status"
+					>
+						<span className="sr-only">Loading...</span>
+					</div>
+				</div>
+			)}
 			<SearchResult gameData={gameData}></SearchResult>
-		</div>
+		</>
 	)
 }
 
