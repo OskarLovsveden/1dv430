@@ -27,24 +27,59 @@ mongoController.newList = async (req, res) => {
 	}
 }
 
+// Update list
+mongoController.updateList = async (req, res) => {
+	try {
+		const result = await List.updateOne({ _id: req.list.id }, { ...req.body })
+
+		if (result.nModified === 1) {
+			const message = {
+				type: 'success',
+				text: 'The list was updated successfully.'
+			}
+			res.json(message)
+		}
+	} catch (error) {
+		const message = { type: 'danger', text: error.message }
+		res.json(message)
+	}
+}
+
+// Update list
+mongoController.deleteList = async (req, res) => {
+	try {
+		await List.deleteOne({ _id: req.list.id })
+
+		const message = {
+			type: 'success',
+			text: 'The list was deleted successfully.'
+		}
+		res.json(message)
+	} catch (error) {
+		const message = { type: 'danger', text: error.message }
+		res.json(message)
+	}
+}
+
 // Get all lists
 mongoController.getLists = async (req, res) => {
 	try {
 		const lists = await List.find()
 		res.json(lists)
 	} catch (error) {
-		console.error(error.message)
+		const message = { type: 'danger', text: error.message }
+		res.json(message)
 	}
 }
 
 // Get specific list of _id
 mongoController.getList = async (req, res) => {
 	try {
-		const id = req.params.id
-		const list = await List.findById({ _id: id })
+		const list = await List.findById({ _id: req.params.id })
 		res.json(list)
 	} catch (error) {
-		console.error(error.message)
+		const message = { type: 'danger', text: error.message }
+		res.json(message)
 	}
 }
 
@@ -68,7 +103,8 @@ mongoController.saveGame = async (req, res) => {
 
 		res.json(message)
 	} catch (error) {
-		console.error(error.message)
+		const message = { type: 'danger', text: error.message }
+		res.json(message)
 	}
 }
 
