@@ -27,14 +27,14 @@ const Logout = () => {
 	}
 
 	return (
-		<div className="d-flex flex-column justify-content-center pb-5">
+		<div className="d-flex flex-column justify-content-center p-5">
 			<div className="text-center">
 				<p className="h4 mb-4">Logout</p>
 				<p className="h5 mb-4">Are you sure you want to logout?</p>
-				<button className="btn btn-primary" onClick={logoutUser}>
+				<button className="btn btn-outline-default" onClick={logoutUser}>
 					Yes
 				</button>
-				<button className="btn btn-danger" onClick={doNotLogoutUser}>
+				<button className="btn btn-outline-danger" onClick={doNotLogoutUser}>
 					No
 				</button>
 			</div>

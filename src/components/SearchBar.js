@@ -39,7 +39,7 @@ const SearchBar = ({ value, loading, placeholder }) => {
 					onChange={handleChange}
 					placeholder={placeholder}
 				></input>
-				<button type="submit" className="btn btn-sm btn-outline-primary">
+				<button type="submit" className="btn btn-sm btn-outline-default">
 					Search
 				</button>
 			</form>

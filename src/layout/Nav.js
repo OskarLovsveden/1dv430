@@ -7,7 +7,7 @@ const activeLink = { backgroundColor: 'rgba(255, 255, 255, 0.2)' }
 const Nav = () => {
 	const { user } = useContext(GlobalContext)
 	return (
-		<nav className="navbar navbar-expand-lg navbar-dark primary-color">
+		<nav className="navbar navbar-expand-lg navbar-dark default-color-dark">
 			<NavLink className="navbar-brand" to="/">
 				Home
 			</NavLink>

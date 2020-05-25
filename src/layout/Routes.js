@@ -15,36 +15,38 @@ import ListEdit from '../components/ListEdit'
 const Routes = ({ children }) => (
 	<Router>
 		{children}
-		<Flash />
-		<Switch>
-			<Route path="/list-edit">
-				<ListEdit />
-			</Route>
-			<Route path="/register">
-				<Register />
-			</Route>
-			<Route path="/logout">
-				<Logout />
-			</Route>
-			<Route path="/login">
-				<Login />
-			</Route>
-			<Route path="/game">
-				<Game />
-			</Route>
-			<Route path="/list">
-				<List />
-			</Route>
-			<Route path="/lists">
-				<Lists />
-			</Route>
-			<Route exact path="/">
-				<Home />
-			</Route>
-			<Route path="/*">
-				<NotFound />
-			</Route>
-		</Switch>
+		<div className="p-1 mb-5">
+			<Flash />
+			<Switch>
+				<Route path="/list-edit">
+					<ListEdit />
+				</Route>
+				<Route path="/register">
+					<Register />
+				</Route>
+				<Route path="/logout">
+					<Logout />
+				</Route>
+				<Route path="/login">
+					<Login />
+				</Route>
+				<Route path="/game">
+					<Game />
+				</Route>
+				<Route path="/list">
+					<List />
+				</Route>
+				<Route path="/lists">
+					<Lists />
+				</Route>
+				<Route exact path="/">
+					<Home />
+				</Route>
+				<Route path="/*">
+					<NotFound />
+				</Route>
+			</Switch>
+		</div>
 	</Router>
 )
 

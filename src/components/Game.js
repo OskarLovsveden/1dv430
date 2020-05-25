@@ -53,7 +53,7 @@ const Game = () => {
 	})
 
 	return (
-		<div>
+		<div className="p-2">
 			{game.name}
 			<Select
 				placeholder="Select list..."
@@ -61,7 +61,7 @@ const Game = () => {
 				onChange={handleChange}
 				options={options}
 			/>
-			<button className="btn" onClick={handleClick}>
+			<button className="btn btn-outline-default" onClick={handleClick}>
 				Add game to list
 			</button>
 		</div>

@@ -82,7 +82,7 @@ const ListEdit = ({ list }) => {
 			<button
 				onClick={saveUpdates}
 				type="button"
-				className="btn btn-primary btn-md mt-0"
+				className="btn btn-outline-default btn-md mt-0"
 			>
 				Save List
 			</button>

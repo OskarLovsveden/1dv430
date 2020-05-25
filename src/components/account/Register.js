@@ -118,13 +118,16 @@ const Register = () => {
 						</small>
 					)}
 					<button
-						className="btn btn-primary btn-block my-4"
+						className="btn btn-outline-default btn-block my-4"
 						onClick={registerUser}
 					>
 						Register
 					</button>
 					<p>
-						Already registered? <a href="/login">Login</a>
+						Already registered?{' '}
+						<a className="text-default" href="/login">
+							Login
+						</a>
 					</p>
 				</form>
 			</div>

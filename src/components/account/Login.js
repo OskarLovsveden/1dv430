@@ -74,14 +74,17 @@ const Login = () => {
 					></input>
 
 					<button
-						className="btn btn-primary btn-block my-4"
+						className="btn btn-outline-default btn-block my-4"
 						onClick={loginUser}
 					>
 						Login
 					</button>
 
 					<p>
-						Not a member? <a href="/register">Register</a>
+						Not a member?{' '}
+						<a className="text-default" href="/register">
+							Register
+						</a>
 					</p>
 				</form>
 			</div>

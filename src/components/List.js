@@ -26,7 +26,7 @@ const List = () => {
 						<>
 							<button
 								onClick={editList}
-								className="btn btn-sm btn-primary float-right"
+								className="btn btn-sm btn-outline-default float-right"
 								type="button"
 							>
 								<i className="fas fa-cog"></i>
