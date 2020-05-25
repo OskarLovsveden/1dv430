@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 
 const ListEdit = ({ list }) => {
+	const history = useHistory()
 	const [listState, updateListState] = useState(list)
 
 	const handleChange = event => {
@@ -21,8 +24,17 @@ const ListEdit = ({ list }) => {
 		})
 	}
 
-	const saveUpdates = () => {
-		console.log(listState)
+	const saveUpdates = async () => {
+		const response = await axios({
+			method: 'post',
+			url: `/mongo/list/update/${listState._id}`,
+			data: listState
+		})
+		if (response.data.type === 'success') {
+			history.push('/lists')
+		} else {
+			console.log(response.data)
+		}
 	}
 
 	return (
@@ -45,6 +57,7 @@ const ListEdit = ({ list }) => {
 						id={`collected${game.id}`}
 						data-reference={game.id}
 						name="collected"
+						checked={game.checked}
 					></input>
 					<label className="form-check-label" htmlFor={`collected${game.id}`}>
 						Collected
@@ -57,6 +70,7 @@ const ListEdit = ({ list }) => {
 						id={`completed${game.id}`}
 						data-reference={game.id}
 						name="completed"
+						checked={game.completed}
 					></input>
 					<label className="form-check-label" htmlFor={`completed${game.id}`}>
 						Completed
