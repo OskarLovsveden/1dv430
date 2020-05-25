@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
+import { useHistory, useLocation } from 'react-router-dom'
 import axios from 'axios'
-import { useHistory } from 'react-router-dom'
 
 const ListEdit = ({ list }) => {
 	const history = useHistory()
-	const [listState, updateListState] = useState(list)
+	const location = useLocation()
+	const [listState, updateListState] = useState(location.state)
 
 	const handleChange = event => {
 		updateListState({
@@ -31,7 +32,7 @@ const ListEdit = ({ list }) => {
 			data: listState
 		})
 		if (response.data.type === 'success') {
-			history.push('/lists')
+			history.push({ pathname: '/lists', state: response.data })
 		} else {
 			console.log(response.data)
 		}
