@@ -1,16 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './layout/App'
-import { GameProvider } from './context/GameState'
 import { GlobalProvider } from './context/GlobalState'
 
 // import * as serviceWorker from './serviceWorker';
 
 const app = (
 	<GlobalProvider>
-		<GameProvider>
-			<App />
-		</GameProvider>
+		<App />
 	</GlobalProvider>
 )
 
