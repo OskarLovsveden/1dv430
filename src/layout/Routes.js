@@ -8,7 +8,7 @@ import List from '../components/List'
 import Game from '../components/Game'
 import Register from '../components/account/Register'
 import Login from '../components/account/Login'
-import Flash from '../components/Flash'
+import Flash from './Flash'
 import Logout from '../components/account/Logout'
 import ListEdit from '../components/ListEdit'
 
