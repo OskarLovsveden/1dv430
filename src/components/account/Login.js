@@ -37,12 +37,11 @@ const Login = () => {
 					password: password
 				}
 			})
-			const data = response.data
-			if (data.type === 'success') {
+			if (response.data.type === 'success') {
 				userLogin(username)
-				setFlash(data)
+				setFlash(response.data)
 			}
-			history.push('/')
+			history.push({ pathname: '/', state: response.data })
 		} catch (error) {
 			console.error(error.message)
 		}

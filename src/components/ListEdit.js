@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import axios from 'axios'
 
-const ListEdit = ({ list }) => {
+const ListEdit = () => {
 	const history = useHistory()
 	const location = useLocation()
 	const [listState, updateListState] = useState(location.state)
@@ -40,6 +40,7 @@ const ListEdit = ({ list }) => {
 
 	return (
 		<form className="form-inline p-2">
+			{location.state && console.log(location.state)}
 			<input
 				type="text"
 				className="form-control mb-2 mr-sm-2"

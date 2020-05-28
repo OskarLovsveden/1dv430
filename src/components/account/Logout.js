@@ -11,12 +11,11 @@ const Logout = () => {
 		event.preventDefault()
 		try {
 			const response = await axios({ method: 'post', url: 'user/logout' })
-			const data = response.data
-			if (data.type === 'success') {
+			if (response.data.type === 'success') {
 				userLogout()
-				setFlash(data)
+				setFlash(response.data)
 			}
-			history.push('/')
+			history.push({ pathname: '/', state: response.data })
 		} catch (error) {
 			console.error(error.message)
 		}

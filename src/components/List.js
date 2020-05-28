@@ -20,6 +20,7 @@ const List = () => {
 	return (
 		list && (
 			<div className="p-2">
+				{location.state && console.log(location.state)}
 				<div>
 					<span className="h4">{list.name}</span>
 					{list.author === user && (
