@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { GlobalContext } from '../context/GlobalState'
+import { FlashContext } from '../context/FlashState'
 import { useHistory, useLocation } from 'react-router-dom'
 import axios from 'axios'
 
 const Lists = () => {
+	const { user } = useContext(GlobalContext)
+	const { showFlash } = useContext(FlashContext)
 	const history = useHistory()
 	const location = useLocation()
 	const [lists, setLists] = useState([])
@@ -25,8 +29,10 @@ const Lists = () => {
 				method: 'post',
 				url: 'mongo/list/new'
 			})
-			const data = response.data
-			setLists([...lists, data.list])
+			if (response.data.message.type === 'success') {
+				setLists([...lists, response.data.list])
+			}
+			showFlash(response.data.message)
 		} catch (error) {
 			console.error(error.message)
 		}
@@ -39,9 +45,11 @@ const Lists = () => {
 	return (
 		<div>
 			{location.state && console.log(location.state)}
-			<button onClick={addNewList} className="btn btn-m btn-outline-default">
-				Add new list
-			</button>
+			{user && (
+				<button onClick={addNewList} className="btn btn-m btn-outline-default">
+					Add new list
+				</button>
+			)}
 			<div className="list-group">
 				{lists.length
 					? lists.map(list => (
