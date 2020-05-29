@@ -2,12 +2,15 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './layout/App'
 import { GlobalProvider } from './context/GlobalState'
+import { FlashProvider } from './context/FlashState'
 
 // import * as serviceWorker from './serviceWorker';
 
 const app = (
 	<GlobalProvider>
-		<App />
+		<FlashProvider>
+			<App />
+		</FlashProvider>
 	</GlobalProvider>
 )
 
