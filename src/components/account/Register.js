@@ -1,13 +1,14 @@
 // Inpiration for validation of form - https://www.telerik.com/blogs/up-and-running-with-react-form-validation
 
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { FlashContext } from '../../context/FlashState'
 import axios from 'axios'
 
 const Register = () => {
+	const { showFlash } = useContext(FlashContext)
 	const [username, setUsername] = useState(null)
 	const [password, setPassword] = useState(null)
 	const [errors, setErrors] = useState({ password: '', confirm: '' })
-	const [flash, setFlash] = useState(null)
 
 	const validateForm = () => {
 		let valid = true
@@ -58,7 +59,7 @@ const Register = () => {
 					password: password
 				}
 			})
-			setFlash(response.data)
+			showFlash(response.data)
 		} else {
 			console.error('Invalid Form')
 		}
@@ -66,11 +67,6 @@ const Register = () => {
 
 	return (
 		<>
-			{flash && (
-				<div className={`alert alert-${flash.type}`} role="alert">
-					{flash.text}
-				</div>
-			)}
 			<div className="d-flex justify-content-center pb-5">
 				<form className="text-center p-5">
 					<p className="h4 mb-4">Register</p>

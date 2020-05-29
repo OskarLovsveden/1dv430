@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react'
 import { GlobalContext } from '../../context/GlobalState'
+import { FlashContext } from '../../context/FlashState'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 const Login = () => {
-	const { userLogin, setFlash } = useContext(GlobalContext)
+	const { userLogin } = useContext(GlobalContext)
+	const { showFlash } = useContext(FlashContext)
 	const history = useHistory()
 
 	const [username, setUsername] = useState(null)
@@ -39,7 +41,7 @@ const Login = () => {
 			})
 			if (response.data.type === 'success') {
 				userLogin(username)
-				setFlash(response.data)
+				showFlash(response.data)
 			}
 			history.push({ pathname: '/', state: response.data })
 		} catch (error) {

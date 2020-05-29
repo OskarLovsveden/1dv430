@@ -1,10 +1,12 @@
 import React, { useContext } from 'react'
 import { GlobalContext } from '../../context/GlobalState'
+import { FlashContext } from '../../context/FlashState'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 const Logout = () => {
-	const { userLogout, setFlash } = useContext(GlobalContext)
+	const { userLogout } = useContext(GlobalContext)
+	const { showFlash } = useContext(FlashContext)
 	const history = useHistory()
 
 	const logoutUser = async event => {
@@ -13,7 +15,7 @@ const Logout = () => {
 			const response = await axios({ method: 'post', url: 'user/logout' })
 			if (response.data.type === 'success') {
 				userLogout()
-				setFlash(response.data)
+				showFlash(response.data)
 			}
 			history.push({ pathname: '/', state: response.data })
 		} catch (error) {
