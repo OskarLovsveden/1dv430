@@ -14,7 +14,7 @@ mongoController.newList = async (req, res) => {
 
 		const message = {
 			type: 'success',
-			text: `New list: ${list.name}`
+			text: `New list added: ${list.name}`
 		}
 
 		res.json({ message: message, list: list })
