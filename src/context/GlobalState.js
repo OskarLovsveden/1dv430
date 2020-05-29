@@ -4,11 +4,7 @@ import axios from 'axios'
 
 // Initial State
 const initialState = {
-	user: null,
-	flash: {
-		type: '',
-		text: ''
-	}
+	user: null
 }
 
 // Create context
@@ -40,21 +36,13 @@ export const GlobalProvider = ({ children }) => {
 			payload: null
 		})
 	}
-	const setFlash = flash => {
-		dispatch({
-			type: 'SET_FLASH',
-			payload: flash
-		})
-	}
 
 	return (
 		<GlobalContext.Provider
 			value={{
 				user: state.user,
-				flash: state.flash,
 				userLogin,
-				userLogout,
-				setFlash
+				userLogout
 			}}
 		>
 			{children}
