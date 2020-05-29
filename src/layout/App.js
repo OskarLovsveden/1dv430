@@ -1,6 +1,4 @@
 import React from 'react'
-
-// Components
 import Nav from './Nav'
 import Routes from './Routes'
 import Footer from './Footer'
