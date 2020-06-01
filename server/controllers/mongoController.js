@@ -84,12 +84,12 @@ mongoController.getList = async (req, res) => {
 
 // Save game to list with given list _id
 mongoController.saveGame = async (req, res) => {
+	let message
 	try {
 		const id = req.params.listid
 		const data = req.body
 
 		const list = await List.findById({ _id: id })
-		let message
 
 		if (list.games.some(game => game.id === data.id)) {
 			message = {
@@ -108,7 +108,7 @@ mongoController.saveGame = async (req, res) => {
 
 		res.json(message)
 	} catch (error) {
-		const message = { type: 'danger', text: error.message }
+		message = { type: 'danger', text: error.message }
 		res.json(message)
 	}
 }
