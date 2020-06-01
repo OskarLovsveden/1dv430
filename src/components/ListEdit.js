@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { FlashContext } from '../context/FlashState'
 import { useHistory, useLocation } from 'react-router-dom'
 import axios from 'axios'
 
 const ListEdit = () => {
+	const { showFlash } = useContext(FlashContext)
 	const history = useHistory()
 	const location = useLocation()
 	const [listState, updateListState] = useState(location.state)
@@ -32,9 +34,10 @@ const ListEdit = () => {
 			data: listState
 		})
 		if (response.data.type === 'success') {
-			history.push({ pathname: '/lists', state: response.data })
+			history.push('/lists')
+			showFlash(response.data)
 		} else {
-			console.log(response.data)
+			showFlash(response.data)
 		}
 	}
 
