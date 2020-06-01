@@ -43,7 +43,6 @@ const ListEdit = () => {
 
 	return (
 		<form className="form-inline p-2">
-			{location.state && console.log(location.state)}
 			<input
 				type="text"
 				className="form-control mb-2 mr-sm-2"

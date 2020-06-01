@@ -1,7 +1,6 @@
 export default (state, action) => {
 	switch (action.type) {
 		case 'SHOW_FLASH':
-			console.log('show flash - flash reducer')
 			return {
 				flash: {
 					type: action.payload.type,

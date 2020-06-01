@@ -1,14 +1,13 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { GlobalContext } from '../context/GlobalState'
 import { FlashContext } from '../context/FlashState'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 const Lists = () => {
 	const { user } = useContext(GlobalContext)
 	const { showFlash } = useContext(FlashContext)
 	const history = useHistory()
-	const location = useLocation()
 	const [lists, setLists] = useState([])
 
 	useEffect(() => {
@@ -44,7 +43,6 @@ const Lists = () => {
 
 	return (
 		<div>
-			{location.state && console.log(location.state)}
 			{user && (
 				<button onClick={addNewList} className="btn btn-m btn-outline-default">
 					Add new list

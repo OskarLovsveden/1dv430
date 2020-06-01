@@ -56,7 +56,6 @@ const Game = () => {
 
 	return (
 		<div className="p-2">
-			{location.state && console.log(location.state)}
 			{game.name}
 			<Select
 				placeholder="Select list..."
