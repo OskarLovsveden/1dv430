@@ -42,8 +42,10 @@ const Login = () => {
 			if (response.data.type === 'success') {
 				userLogin(username)
 				showFlash(response.data)
+				history.push('/')
+			} else {
+				showFlash(response.data)
 			}
-			history.push({ pathname: '/', state: response.data })
 		} catch (error) {
 			console.error(error.message)
 		}

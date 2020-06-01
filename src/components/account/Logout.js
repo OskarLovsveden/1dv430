@@ -17,7 +17,7 @@ const Logout = () => {
 				userLogout()
 				showFlash(response.data)
 			}
-			history.push({ pathname: '/', state: response.data })
+			history.push('/')
 		} catch (error) {
 			console.error(error.message)
 		}

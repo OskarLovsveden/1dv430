@@ -1,10 +1,12 @@
 // Inpiration for validation of form - https://www.telerik.com/blogs/up-and-running-with-react-form-validation
 
 import React, { useState, useContext } from 'react'
+import { useHistory } from 'react-router-dom'
 import { FlashContext } from '../../context/FlashState'
 import axios from 'axios'
 
 const Register = () => {
+	const history = useHistory()
 	const { showFlash } = useContext(FlashContext)
 	const [username, setUsername] = useState(null)
 	const [password, setPassword] = useState(null)
@@ -60,8 +62,9 @@ const Register = () => {
 				}
 			})
 			showFlash(response.data)
+			history.push('/login')
 		} else {
-			console.error('Invalid Form')
+			showFlash({ type: 'danger', text: 'Invalid form' })
 		}
 	}
 
