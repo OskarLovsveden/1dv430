@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { FlashContext } from '../context/FlashState'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 const DeleteListModal = ({ listID }) => {
+	const { showFlash } = useContext(FlashContext)
 	const history = useHistory()
 
 	const deleteList = async event => {
@@ -12,9 +14,10 @@ const DeleteListModal = ({ listID }) => {
 			url: `/mongo/list/delete/${listID}`
 		})
 		if (response.data.type === 'success') {
-			history.push({ pathname: '/lists', state: response.data })
+			history.push('/lists')
+			showFlash(response.data)
 		} else {
-			console.log(response.data)
+			showFlash(response.data)
 		}
 	}
 
