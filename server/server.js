@@ -7,6 +7,7 @@ const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
 const session = require('express-session')
+const helmet = require('helmet')
 const app = express()
 
 // connect to the database
@@ -14,6 +15,8 @@ mongoose.connect().catch(error => {
 	console.error(error)
 	process.exit(1)
 })
+
+app.use(helmet())
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
