@@ -1,8 +1,7 @@
-const { generateName } = require('../helpers/nameHelper')
+const createError = require('http-errors')
 const List = require('../models/List')
 
-const createError = require('http-errors')
-
+const { generateName } = require('../helpers/nameHelper')
 const mongoController = {}
 
 // New List
@@ -90,15 +89,21 @@ mongoController.saveGame = async (req, res) => {
 		const data = req.body
 
 		const list = await List.findById({ _id: id })
-		list.games = [...list.games, data]
-		list.games = list.games.filter(
-			(game, index, self) => index === self.findIndex(g => g.id === game.id)
-		)
-		list.save()
+		let message
 
-		const message = {
-			type: 'success',
-			text: `Game added to ${list.name}`
+		if (list.games.some(game => game.id === data.id)) {
+			message = {
+				type: 'danger',
+				text: `Game already added to ${list.name}`
+			}
+		} else {
+			list.games = [...list.games, data]
+			list.save()
+
+			message = {
+				type: 'success',
+				text: `Game added to ${list.name}`
+			}
 		}
 
 		res.json(message)
