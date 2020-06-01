@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { FlashContext } from '../context/FlashState'
 import Select from 'react-select'
 import { useHistory, useLocation } from 'react-router-dom'
 import axios from 'axios'
 
 const Game = () => {
+	const { showFlash } = useContext(FlashContext)
 	const history = useHistory()
 	const location = useLocation()
 	const [game] = useState(location.state)
@@ -38,7 +40,7 @@ const Game = () => {
 					url: `/mongo/save/${listID}`,
 					data: game
 				})
-				console.log(response.data)
+				showFlash(response.data)
 			} catch (error) {
 				console.error(error)
 			}
