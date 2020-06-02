@@ -1,4 +1,3 @@
-// Config
 const mongoose = require('./config/mongoose')
 const config = require('./config/dotenv')
 const { PORT, SESS_SECRET, SESS_NAME } = config
@@ -10,7 +9,6 @@ const session = require('express-session')
 const helmet = require('helmet')
 const app = express()
 
-// connect to the database
 mongoose.connect().catch(error => {
 	console.error(error)
 	process.exit(1)
@@ -47,7 +45,6 @@ if (process.env.NODE_ENV === 'production') {
 	})
 }
 
-// Start listening
 const port = PORT || 8000
 app.listen(port, () => {
 	console.log(`Server is running on port: ${port}`)

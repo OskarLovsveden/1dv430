@@ -3,7 +3,6 @@ const config = require('./dotenv')
 const { DB_STRING } = config
 
 module.exports.connect = async () => {
-	// Bind connection to events (to get notifications).
 	mongoose.connection.on('connected', () =>
 		console.log('Mongoose connection is open.')
 	)
@@ -14,7 +13,6 @@ module.exports.connect = async () => {
 		console.log('Mongoose connection is disconnected.')
 	)
 
-	// If the Node process ends, close the Mongoose connection.
 	process.on('SIGINT', () => {
 		mongoose.connection.close(() => {
 			console.log(
@@ -24,7 +22,6 @@ module.exports.connect = async () => {
 		})
 	})
 
-	// Connect to the server.
 	return mongoose.connect(DB_STRING, {
 		useCreateIndex: true,
 		useNewUrlParser: true,
