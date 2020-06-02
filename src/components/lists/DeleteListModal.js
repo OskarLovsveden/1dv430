@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { FlashContext } from '../../context/FlashState'
 import { useHistory } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import axios from 'axios'
 
 const DeleteListModal = ({ listID }) => {
@@ -68,6 +69,10 @@ const DeleteListModal = ({ listID }) => {
 			</div>
 		</>
 	)
+}
+
+DeleteListModal.propTypes = {
+	listID: PropTypes.string.isRequired
 }
 
 export default DeleteListModal
