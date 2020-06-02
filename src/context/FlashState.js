@@ -1,7 +1,6 @@
 import React, { createContext, useReducer } from 'react'
 import FlashReducer from './FlashReducer'
 
-// Initial State
 const initialState = {
 	flash: {
 		type: '',
@@ -10,14 +9,11 @@ const initialState = {
 	}
 }
 
-// Create context
 export const FlashContext = createContext(initialState)
 
-// Provider component
 export const FlashProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(FlashReducer, initialState)
 
-	// Actions
 	const showFlash = flash => {
 		dispatch({
 			type: 'SHOW_FLASH',
