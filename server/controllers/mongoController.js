@@ -7,7 +7,7 @@ const mongoController = {}
 // New List
 mongoController.newList = async (req, res) => {
 	try {
-		const listName = generateName()
+		const listName = req.body.name ? req.body.name : generateName()
 		const list = new List({ name: listName, author: req.session.user })
 		list.save()
 
@@ -63,7 +63,12 @@ mongoController.deleteList = async (req, res) => {
 // Get all lists
 mongoController.getLists = async (req, res) => {
 	try {
-		const lists = await List.find()
+		let lists
+		if (req.params.author) {
+			lists = await List.find({ author: req.params.author })
+		} else {
+			lists = await List.find()
+		}
 		res.json(lists)
 	} catch (error) {
 		const message = { type: 'danger', text: error.message }
@@ -96,6 +101,7 @@ mongoController.saveGame = async (req, res) => {
 				type: 'danger',
 				text: `Game already added to ${list.name}`
 			}
+			res.status(409).send(message)
 		} else {
 			list.games = [...list.games, data]
 			list.save()
@@ -104,9 +110,8 @@ mongoController.saveGame = async (req, res) => {
 				type: 'success',
 				text: `Game added to ${list.name}`
 			}
+			res.json(message)
 		}
-
-		res.json(message)
 	} catch (error) {
 		message = { type: 'danger', text: error.message }
 		res.json(message)
