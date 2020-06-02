@@ -1,13 +1,11 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import SearchGame from '../components/search/SearchGame'
 
 const Home = () => {
 	const history = useHistory()
 
 	return (
 		<div>
-			<SearchGame />
 			<div className="row row-cols-1 row-cols-md-2">
 				<div className="card m-auto text-center" style={{ maxWidth: '20rem' }}>
 					<div className="card-body">

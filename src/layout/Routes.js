@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import NotFound from '../components/errors/NotFound'
 import Home from '../components/Home'
+import SearchGame from '../components/search/SearchGame'
 import Game from '../components/Game'
 import Lists from '../components/lists/Lists'
 import List from '../components/lists/List'
@@ -21,9 +22,6 @@ const Routes = ({ children }) => {
 			<div className="p-1 mb-5">
 				<Flash />
 				<Switch>
-					<Route path="/list-edit">
-						<ListEdit />
-					</Route>
 					<AuthRoute
 						forLoggedIn={false}
 						path="/register"
@@ -34,11 +32,17 @@ const Routes = ({ children }) => {
 					<Route path="/game">
 						<Game />
 					</Route>
+					<Route path="/list-edit">
+						<ListEdit />
+					</Route>
 					<Route path="/list">
 						<List />
 					</Route>
 					<Route path="/lists">
 						<Lists />
+					</Route>
+					<Route path="/search">
+						<SearchGame />
 					</Route>
 					<Route exact path="/">
 						<Home />

@@ -27,6 +27,11 @@ const Nav = () => {
 			<div className="collapse navbar-collapse" id="app-navbar">
 				<ul className="navbar-nav mr-auto">
 					<li className="nav-item">
+						<NavLink activeStyle={activeLink} className="nav-link" to="/search">
+							Search
+						</NavLink>
+					</li>
+					<li className="nav-item">
 						<NavLink activeStyle={activeLink} className="nav-link" to="/lists">
 							Lists
 						</NavLink>
