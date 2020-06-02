@@ -61,8 +61,12 @@ const Register = () => {
 					password: password
 				}
 			})
-			showFlash(response.data)
-			history.push('/login')
+			if (response.data.type === 'success') {
+				showFlash(response.data)
+				history.push('/login')
+			} else {
+				showFlash(response.data)
+			}
 		} else {
 			showFlash({ type: 'danger', text: 'Invalid form' })
 		}
