@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { FlashContext } from '../context/FlashState'
+import { user, GlobalContext } from '../context/GlobalState'
 import Select from 'react-select'
 import { useHistory, useLocation } from 'react-router-dom'
 import axios from 'axios'
 
 const Game = () => {
 	const { showFlash } = useContext(FlashContext)
+	const { user } = useContext(GlobalContext)
 	const history = useHistory()
 	const location = useLocation()
 	const [game] = useState(location.state)
@@ -47,12 +49,15 @@ const Game = () => {
 		}
 	}
 
-	const options = lists.map(list => {
-		return {
-			value: list._id,
-			label: list.name
+	const options = lists.reduce((filtered, list) => {
+		if (list.author === user) {
+			filtered.push({
+				value: list._id,
+				label: list.name
+			})
 		}
-	})
+		return filtered
+	}, [])
 
 	return (
 		<div className="p-2">
