@@ -47,12 +47,10 @@ const SearchBar = ({ value, loading, placeholder }) => {
 	)
 }
 
-// Proptypes
 SearchBar.propTypes = {
 	value: PropTypes.func.isRequired,
 	loading: PropTypes.func.isRequired,
 	placeholder: PropTypes.string
 }
 
-// Exports
 export default SearchBar

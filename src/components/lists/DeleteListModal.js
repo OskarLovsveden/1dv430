@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { FlashContext } from '../context/FlashState'
+import { FlashContext } from '../../context/FlashState'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 

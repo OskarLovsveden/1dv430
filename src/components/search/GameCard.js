@@ -25,7 +25,6 @@ const GameCard = ({ game }) => {
 	)
 }
 
-// Proptypes
 GameCard.propTypes = {
 	game: PropTypes.shape({
 		id: PropTypes.number.isRequired,
@@ -33,5 +32,4 @@ GameCard.propTypes = {
 	}).isRequired
 }
 
-// Exports
 export default GameCard

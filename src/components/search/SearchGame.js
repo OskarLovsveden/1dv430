@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-
-// Components
 import SearchBar from './SearchBar'
 import SearchResult from './SearchResult'
 
