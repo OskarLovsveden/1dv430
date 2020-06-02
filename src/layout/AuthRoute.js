@@ -4,7 +4,7 @@ import { Route, Redirect } from 'react-router-dom'
 
 const AuthRoute = ({ forLoggedIn, component: Component, ...rest }) => {
 	const { user } = useContext(GlobalContext)
-	const auth = forLoggedIn ? user : !user
+	const auth = forLoggedIn ? !user : user
 
 	return (
 		<Route

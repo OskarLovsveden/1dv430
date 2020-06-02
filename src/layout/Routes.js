@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import NotFound from '../components/errors/NotFound'
 import Home from '../components/Home'
 import Game from '../components/Game'
-import Lists from '../components/Lists'
-import List from '../components/List'
-import ListEdit from '../components/ListEdit'
+import Lists from '../components/lists/Lists'
+import List from '../components/lists/List'
+import ListEdit from '../components/lists/ListEdit'
 import Register from '../components/account/Register'
 import Login from '../components/account/Login'
 import Logout from '../components/account/Logout'
@@ -24,9 +24,13 @@ const Routes = ({ children }) => {
 					<Route path="/list-edit">
 						<ListEdit />
 					</Route>
-					<AuthRoute forLoggedIn={true} path="/register" component={Register} />
-					<AuthRoute forLoggedIn={true} path="/login" component={Login} />
-					<AuthRoute forLoggedIn={false} path="/logout" component={Logout} />
+					<AuthRoute
+						forLoggedIn={false}
+						path="/register"
+						component={Register}
+					/>
+					<AuthRoute forLoggedIn={false} path="/login" component={Login} />
+					<AuthRoute forLoggedIn={true} path="/logout" component={Logout} />
 					<Route path="/game">
 						<Game />
 					</Route>
