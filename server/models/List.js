@@ -1,10 +1,9 @@
 const mongoose = require('mongoose')
 
-// Create a schema.
 const listSchema = new mongoose.Schema(
 	{
-		name: String,
-		author: String,
+		name: { type: String, required: true, maxlength: 40 },
+		author: { type: String, required: true },
 		games: [Object]
 	},
 	{
@@ -13,8 +12,6 @@ const listSchema = new mongoose.Schema(
 	}
 )
 
-// Create a model using the schema.
 const List = mongoose.model('List', listSchema)
 
-// Exports
 module.exports = List

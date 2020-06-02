@@ -42,5 +42,4 @@ userSchema.statics.authenticate = async function (username, password) {
 
 const User = mongoose.model('User', userSchema)
 
-// Exports.
 module.exports = User
