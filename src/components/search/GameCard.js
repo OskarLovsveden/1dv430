@@ -10,7 +10,7 @@ const GameCard = ({ game }) => {
 	}
 
 	return (
-		<div className="card">
+		<div className="card mb-1">
 			<div className="card-body">
 				{game.name}
 				<br></br>

@@ -19,7 +19,7 @@ const Routes = ({ children }) => {
 	return (
 		<Router>
 			{children}
-			<div className="p-1 mb-5">
+			<div className="p-1" style={{ marginBottom: '5rem' }}>
 				<Flash />
 				<Switch>
 					<AuthRoute
