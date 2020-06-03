@@ -27,6 +27,15 @@ const ListEdit = () => {
 		})
 	}
 
+	const handleClick = async event => {
+		updateListState({
+			...listState,
+			games: [
+				...listState.games.filter(game => game.name !== event.target.name)
+			]
+		})
+	}
+
 	const saveUpdates = async () => {
 		const response = await axios({
 			method: 'post',
@@ -34,7 +43,7 @@ const ListEdit = () => {
 			data: listState
 		})
 		if (response.data.type === 'success') {
-			history.push('/lists')
+			history.push({ pathname: '/list', state: listState._id })
 			showFlash(response.data)
 		} else {
 			showFlash(response.data)
@@ -42,7 +51,8 @@ const ListEdit = () => {
 	}
 
 	return (
-		<form className="form-inline p-2">
+		<div className="p-2">
+			<h5>Enter list name:</h5>
 			<input
 				type="text"
 				className="form-control mb-2 mr-sm-2"
@@ -50,46 +60,50 @@ const ListEdit = () => {
 				defaultValue={listState.name}
 				onChange={handleChange}
 			></input>
-			{listState.games.map(game => (
-				<div key={game.id} className="form-check mb-2 mr-sm-2">
-					{game.name}
-					<br></br>
-					<input
-						onChange={handleCheck}
-						className="form-check-input"
-						type="checkbox"
-						id={`collected${game.id}`}
-						data-reference={game.id}
-						name="collected"
-						checked={game.checked}
-					></input>
-					<label className="form-check-label" htmlFor={`collected${game.id}`}>
-						Collected
-					</label>
-					<br></br>
-					<input
-						onChange={handleCheck}
-						className="form-check-input"
-						type="checkbox"
-						id={`completed${game.id}`}
-						data-reference={game.id}
-						name="completed"
-						checked={game.completed}
-					></input>
-					<label className="form-check-label" htmlFor={`completed${game.id}`}>
-						Completed
-					</label>
-				</div>
-			))}
-
+			<hr></hr>
+			<ul className="list-group mb-2">
+				{listState.games.map(game => (
+					<li className="list-group-item" key={game.id}>
+						<h5>{game.name}</h5>
+						<button
+							name={game.name}
+							onClick={handleClick}
+							className="btn btn-sm btn-outline-danger float-right"
+						>
+							Delete
+						</button>
+						<div>
+							<input
+								onChange={handleCheck}
+								type="checkbox"
+								id={`collected${game.id}`}
+								data-reference={game.id}
+								name="collected"
+								defaultChecked={game.collected}
+							></input>{' '}
+							Collected
+							<br></br>
+							<input
+								onChange={handleCheck}
+								type="checkbox"
+								id={`completed${game.id}`}
+								data-reference={game.id}
+								name="completed"
+								defaultChecked={game.completed}
+							></input>{' '}
+							Completed
+						</div>
+					</li>
+				))}
+			</ul>
 			<button
 				onClick={saveUpdates}
 				type="button"
 				className="btn btn-outline-default btn-md mt-0"
 			>
-				Save List
+				Save
 			</button>
-		</form>
+		</div>
 	)
 }
 
