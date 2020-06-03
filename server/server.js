@@ -9,6 +9,7 @@ const session = require('express-session')
 const helmet = require('helmet')
 const app = express()
 
+// Connect to database
 mongoose.connect().catch(error => {
 	console.error(error)
 	process.exit(1)
@@ -19,6 +20,7 @@ app.use(helmet())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+// Session options
 const sessionOptions = {
 	name: SESS_NAME,
 	secret: SESS_SECRET,
@@ -29,6 +31,7 @@ const sessionOptions = {
 	}
 }
 
+// Set session with options
 app.use(session(sessionOptions))
 
 // routes
@@ -45,6 +48,7 @@ if (process.env.NODE_ENV === 'production') {
 	})
 }
 
+// Listen
 const port = PORT || 8000
 app.listen(port, () => {
 	console.log(`Server is running on port: ${port}`)
