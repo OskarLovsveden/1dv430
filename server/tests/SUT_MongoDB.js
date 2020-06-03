@@ -156,11 +156,85 @@ describe('SUT', () => {
 			SUT.get(`/mongo/lists/${userdataSUT.name}`)
 				.expect(200)
 				.end((err, res) => {
-					res.body[0].should.have.property('_id', listForSUT._id)
-					res.body[0].should.have.property('name', listForSUT.name)
-					res.body[0].should.have.property('author', listForSUT.author)
-					res.body[0].games[0].should.have.property('id', gameData.id)
-					res.body[0].games[0].should.have.property('name', gameData.name)
+					res.body.forEach(obj =>
+						obj.should.have.property('_id', listForSUT._id)
+					)
+					res.body.forEach(obj =>
+						obj.should.have.property('name', listForSUT.name)
+					)
+					res.body.forEach(obj =>
+						obj.should.have.property('author', listForSUT.author)
+					)
+					res.body.forEach(obj => obj.should.have.property('games'))
+					res.body.forEach(obj =>
+						obj.games.forEach(game =>
+							game.should.have.property('id', gameData.id)
+						)
+					)
+					res.body.forEach(obj =>
+						obj.games.forEach(game =>
+							game.should.have.property('name', gameData.name)
+						)
+					)
+					done()
+				})
+		})
+	})
+
+	// Update list with new name
+	describe('Update list with new name', () => {
+		it('Should return status 200 and a successful flash message', done => {
+			listForSUT = { ...listForSUT, name: 'updated testlist' }
+
+			SUT.post(`/mongo/list/update/${listForSUT._id}`)
+				.send(listForSUT)
+				.expect(200)
+				.end((err, res) => {
+					res.body.should.have.property('type', 'success')
+					res.body.should.have.property(
+						'text',
+						'The list was updated successfully.'
+					)
+					done()
+				})
+		})
+	})
+
+	// Get list
+	describe('Get list and see new name', () => {
+		it('Should return status 200 and the list in question', done => {
+			SUT.get(`/mongo/list/${listForSUT._id}`)
+				.expect(200)
+				.end((err, res) => {
+					res.body.should.have.property('name', listForSUT.name)
+					done()
+				})
+		})
+	})
+
+	// Remove list
+	describe('Delete list', () => {
+		it('Should return status 200 and a successful flash message', done => {
+			SUT.post(`/mongo/list/delete/${listForSUT._id}`)
+				.expect(200)
+				.end((err, res) => {
+					res.body.should.have.property('type', 'success')
+					res.body.should.have.property(
+						'text',
+						'The list was deleted successfully.'
+					)
+					done()
+				})
+		})
+	})
+
+	// View current users lists
+	describe('Get user lists again to make sure list was deleted', () => {
+		it('Should return status 200 and an empty array', done => {
+			SUT.get(`/mongo/lists/${userdataSUT.name}`)
+				.expect(200)
+				.end((err, res) => {
+					res.body.should.have.lengthOf(0)
 					done()
 				})
 		})
