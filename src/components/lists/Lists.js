@@ -5,22 +5,22 @@ import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 const Lists = () => {
+	const history = useHistory()
 	const { user } = useContext(GlobalContext)
 	const { showFlash } = useContext(FlashContext)
-	const history = useHistory()
 	const [lists, setLists] = useState([])
 
 	useEffect(() => {
 		const getListsOnRender = async () => {
 			try {
-				const response = await axios('/mongo/lists')
+				const response = await axios(`/mongo/lists/${user}`)
 				setLists(response.data)
 			} catch (error) {
 				console.error(error.message)
 			}
 		}
 		getListsOnRender()
-	}, [])
+	}, [user])
 
 	const addNewList = async () => {
 		try {
@@ -38,7 +38,7 @@ const Lists = () => {
 	}
 
 	const redirectToList = list => {
-		history.push({ pathname: '/list', state: list })
+		history.push({ pathname: '/list', state: list._id })
 	}
 
 	return (
