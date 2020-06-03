@@ -40,7 +40,7 @@ const Game = () => {
 				const response = await axios({
 					method: 'post',
 					url: `/mongo/save/${listID}`,
-					data: game
+					data: { ...game, collected: false, completed: false }
 				})
 				showFlash(response.data)
 			} catch (error) {
