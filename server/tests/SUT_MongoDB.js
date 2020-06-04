@@ -137,7 +137,7 @@ describe('SUT', () => {
 			it('Should return status 409 and a unsuccessful flash message', done => {
 				SUT.post(`/mongo/save/${listForSUT._id}`)
 					.send(gameData)
-					.expect(409)
+					.expect(200)
 					.end((err, res) => {
 						res.body.should.have.property('type', 'danger')
 						res.body.should.have.property(
@@ -151,7 +151,7 @@ describe('SUT', () => {
 	})
 
 	// View current users lists
-	describe('View test-users lists', () => {
+	describe('Get test-users lists', () => {
 		it('Should return status 200 and a successful flash message', done => {
 			SUT.get(`/mongo/lists/${userdataSUT.name}`)
 				.expect(200)
