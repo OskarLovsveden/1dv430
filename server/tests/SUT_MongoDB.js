@@ -134,7 +134,7 @@ describe('SUT', () => {
 			})
 		})
 		describe('Twice', () => {
-			it('Should return status 409 and a unsuccessful flash message', done => {
+			it('Should return status 200 and a unsuccessful flash message', done => {
 				SUT.post(`/mongo/save/${listForSUT._id}`)
 					.send(gameData)
 					.expect(200)
