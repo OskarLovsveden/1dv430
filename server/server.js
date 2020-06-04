@@ -21,13 +21,26 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // Session options
-const sessionOptions = {
-	name: SESS_NAME,
-	secret: SESS_SECRET,
-	resave: false,
-	saveUninitialized: false,
-	cookie: {
-		maxAge: 1000 * 60 * 60 * 24
+let sessionOptions
+if (process.env.NODE_ENV === 'production') {
+	sessionOptions = {
+		name: SESS_NAME,
+		secret: SESS_SECRET,
+		resave: false,
+		saveUninitialized: false,
+		cookie: {
+			maxAge: 1000 * 60 * 60 * 24
+		}
+	}
+} else {
+	sessionOptions = {
+		name: 'testname',
+		secret: 'testsecret',
+		resave: false,
+		saveUninitialized: false,
+		cookie: {
+			maxAge: 1000 * 60 * 60 * 24
+		}
 	}
 }
 
