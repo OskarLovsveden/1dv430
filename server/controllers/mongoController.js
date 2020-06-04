@@ -99,7 +99,7 @@ mongoController.saveGame = async (req, res) => {
 				type: 'danger',
 				text: `Game already added to ${list.name}`
 			}
-			res.status(409).send(message)
+			res.json(message)
 		} else {
 			list.games = [...list.games, data]
 			list.save()
