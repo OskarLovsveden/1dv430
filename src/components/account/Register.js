@@ -30,13 +30,22 @@ const Register = () => {
 		switch (name) {
 			case 'username':
 				setUsername(value)
+				setErrors({
+					...errors,
+					username:
+						value.length < 3
+							? 'Username must be at least 3 characters long!'
+							: ''
+				})
 				break
 			case 'password':
 				setPassword(value)
 				setErrors({
 					...errors,
 					password:
-						value.length < 10 ? 'Password must be 10 characters long!' : ''
+						value.length < 10
+							? 'Password must be at least 10 characters long!'
+							: ''
 				})
 				break
 			case 'confirm':
@@ -80,12 +89,21 @@ const Register = () => {
 					<input
 						type="text"
 						name="username"
-						className="form-control mb-4"
+						className="form-control mb-2"
 						placeholder="Username"
 						required="required"
+						aria-describedby="usernameHelpBlock"
 						autoFocus="autofocus"
 						onChange={handleChange}
 					></input>
+					{errors.username && (
+						<small
+							id="usernameHelpBlock"
+							className="form-text text-muted float-left mb-4"
+						>
+							{errors.username}
+						</small>
+					)}
 					<input
 						type="password"
 						name="password"
