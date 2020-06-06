@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { FlashContext } from '../context/FlashState'
-import { user, GlobalContext } from '../context/GlobalState'
+import { GlobalContext } from '../context/GlobalState'
 import Select from 'react-select'
 import { useHistory, useLocation } from 'react-router-dom'
 import axios from 'axios'
