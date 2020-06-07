@@ -51,22 +51,31 @@ const List = () => {
 			<ul className="list-group">
 				{list.games.length ? (
 					list.games.map(game => (
-						<li className="list-group-item" key={game.id}>
-							<h5>{game.name}</h5>
+						<li className="list-group-item d-flex" key={game.id}>
 							<div>
-								<input
-									type="checkbox"
-									checked={game.collected}
-									disabled
-								></input>{' '}
-								Collected
-								<br></br>
-								<input
-									type="checkbox"
-									checked={game.completed}
-									disabled
-								></input>{' '}
-								Completed
+								<img
+									className="mr-2"
+									src={`https:${game.coverUrl}`}
+									alt={`${game.slug}-cover`}
+								></img>
+							</div>
+							<div>
+								<h5>{game.name}</h5>
+								<div>
+									<input
+										type="checkbox"
+										checked={game.collected}
+										disabled
+									></input>{' '}
+									Collected
+									<br></br>
+									<input
+										type="checkbox"
+										checked={game.completed}
+										disabled
+									></input>{' '}
+									Completed
+								</div>
 							</div>
 						</li>
 					))
