@@ -31,11 +31,17 @@ const Nav = () => {
 							Search
 						</NavLink>
 					</li>
-					<li className="nav-item">
-						<NavLink activeStyle={activeLink} className="nav-link" to="/lists">
-							Lists
-						</NavLink>
-					</li>
+					{user && (
+						<li className="nav-item">
+							<NavLink
+								activeStyle={activeLink}
+								className="nav-link"
+								to="/lists"
+							>
+								Lists
+							</NavLink>
+						</li>
+					)}
 					{!user ? (
 						<li className="nav-item">
 							<NavLink
