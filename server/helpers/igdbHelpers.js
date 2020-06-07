@@ -25,14 +25,14 @@ IGDB.getGames = async userInput => {
 }
 
 // Get cover for game
-IGDB.getCover = async gameID => {
-	const response = await axios(`${IGDB_URL}/games`, {
+IGDB.getCover = async coverID => {
+	const response = await axios(`${IGDB_URL}/covers`, {
 		headers: {
 			Accept: 'application/json',
 			'user-key': IGDB_KEY
 		},
 		responseType: 'json',
-		data: `where id = ${gameID};fields *;`
+		data: `where id = ${coverID};fields *;`
 	})
 	return response.data
 }
