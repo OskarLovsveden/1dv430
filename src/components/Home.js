@@ -61,7 +61,8 @@ const Home = () => {
 					</div>
 				)}
 			</div>
-			<h5 className="mx-3 mt-3">
+			<h3 className="mt-3">About</h3>
+			<h5 className="mx-3">
 				<span className="text-default">Mint</span> is an application for anyone
 				who has played a game and likes to be organized. Whether it's a video
 				game, a computer game or a game on your mobile, this app lets you
@@ -69,6 +70,7 @@ const Home = () => {
 				collection, games you have yet to play, games you wish for getting your
 				hands on. The choice is yours!
 			</h5>
+			<h3 className="mt-3">Background</h3>
 			<h5>
 				The name <span className="text-default">Mint</span> comes from the
 				expression "<span className="text-default">Mint</span> condition". This
