@@ -7,13 +7,11 @@ const Home = () => {
 	const { user } = useContext(GlobalContext)
 
 	return (
-		<div className="w-responsive m-auto">
-			{!user ? (
-				<div className="row row-cols-1 row-cols-md-2 mt-5">
-					<div
-						className="card m-auto text-center"
-						style={{ maxWidth: '20rem' }}
-					>
+		<div className="w-responsive m-auto text-center">
+			<h1 className="text-default mt-2">Mint</h1>
+			<div className="row row-cols-1 row-cols-md-2 mt-2">
+				{!user ? (
+					<div className="card m-auto" style={{ maxWidth: '20rem' }}>
 						<div className="card-body">
 							<h3 className="card-title">Get Started!</h3>
 							<p className="card-text text-default">
@@ -36,17 +34,13 @@ const Home = () => {
 							</button>
 						</div>
 					</div>
-				</div>
-			) : (
-				<div className="row row-cols-1 row-cols-md-2 mt-5">
-					<div
-						className="card m-auto text-center"
-						style={{ maxWidth: '20rem' }}
-					>
+				) : (
+					<div className="card m-auto" style={{ maxWidth: '20rem' }}>
 						<div className="card-body">
-							<h3 className="card-title">Welcome!</h3>
+							<h3 className="card-title">Welcome {user}!</h3>
 							<p className="card-text text-default">
-								Click the button to start searching for games!
+								Click a button below to start searching for games or to create a
+								list!
 							</p>
 							<h5>Happy collecting!</h5>
 							<button
@@ -56,10 +50,38 @@ const Home = () => {
 							>
 								Search
 							</button>
+							<button
+								onClick={() => history.push('/lists')}
+								type="button"
+								className="btn btn-outline-default btn-md"
+							>
+								Lists
+							</button>
 						</div>
 					</div>
-				</div>
-			)}
+				)}
+			</div>
+			<h5 className="mx-3 mt-3">
+				<span className="text-default">Mint</span> is an application for anyone
+				who has played a game and likes to be organized. Whether it's a video
+				game, a computer game or a game on your mobile, this app lets you
+				catalog your gaming experience. Create a list for games you have in your
+				collection, games you have yet to play, games you wish for getting your
+				hands on. The choice is yours!
+			</h5>
+			<h5>
+				The name <span className="text-default">Mint</span> comes from the
+				expression "<span className="text-default">Mint</span> condition". This
+				is an expression used to denote the quality of a pre-owned good as
+				displaying virtually no imperfections and being in pristine condition
+				relative to its original production state. Originally, the phrase
+				related to the way collectors described the condition of coins. As the
+				name given to a coin factory is a "
+				<span className="text-default">mint</span>", then{' '}
+				<span className="text-default">mint</span> condition is the condition a
+				coin is in when it leaves the <span className="text-default">mint</span>
+				.
+			</h5>
 		</div>
 	)
 }
