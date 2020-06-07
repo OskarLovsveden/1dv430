@@ -41,13 +41,11 @@ const Lists = () => {
 		history.push({ pathname: '/list', state: list._id })
 	}
 
-	return (
+	return user ? (
 		<div>
-			{user && (
-				<button onClick={addNewList} className="btn btn-m btn-outline-default">
-					Add new list
-				</button>
-			)}
+			<button onClick={addNewList} className="btn btn-m btn-outline-default">
+				Add new list
+			</button>
 			<div className="list-group">
 				{lists.length
 					? lists.map(list => (
@@ -62,6 +60,16 @@ const Lists = () => {
 					  ))
 					: null}
 			</div>
+		</div>
+	) : (
+		<div className="text-center mt-5">
+			<h3>Login to view your lists</h3>
+			<button
+				onClick={() => history.push('/login')}
+				className="btn btn-lg btn-outline-default"
+			>
+				Login
+			</button>
 		</div>
 	)
 }
