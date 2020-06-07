@@ -10,7 +10,7 @@ const SearchBar = ({ value, loading, placeholder }) => {
 		event.preventDefault()
 		loading(true)
 		try {
-			const response = await axios(`/igdb/games/${input}`)
+			const response = await axios(`/igdb/games-with-covers/${input}`)
 			loading(false)
 			value(response.data)
 		} catch (error) {
